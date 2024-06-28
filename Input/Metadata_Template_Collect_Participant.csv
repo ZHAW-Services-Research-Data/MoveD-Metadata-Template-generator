@@ -1,0 +1,10 @@
+﻿##Data collection;;;
+Title;Content/Format;Comment;data input
+;;;
+*Participant-specific information*;;;
+Identification number;;Must be encoded or anonymous;
+Age;[years];;
+Gender;Female, Male, Diverse;;
+Height;[m];2 decimal points;
+Weight;[kg];2 decimal points;
+Leg length;[m];2 decimal points;

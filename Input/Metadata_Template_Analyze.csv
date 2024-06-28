@@ -1,0 +1,13 @@
+﻿##Data analysis;;
+Title;Content/Format;Comment
+;;
+*General information*;;
+Date of data analysis;[YYYY-MM-DD];According to ISO 8601
+Software(s) used for data analysis;;
+Statistical analysis;Statistical model, Number of analyzed parameters, Type of parameter (dependent, independent);
+;;
+*Analysis of imaging data (if applicable, otherwise enter na)*;;
+Statistical analysis (if performed);Statistical model, Number of analyzed parameters, Type of parameter (dependent, independent);Also report if only descriptive statistics were calculated
+;;
+*Data analysis - Comments*;;
+Data analysis: additional comment(s);;

@@ -1,0 +1,23 @@
+﻿##Data sharing;;
+Title;Content/Format;Comment
+*General information*;;
+Date of data publication;[YYYY-MM-DD];According to ISO 8601
+Used data format(s);.CSV, .RData, .txt, ...;"Data in structured and open-source format. Open Formats are described in ""Process: Open file format:"" examples are json, xml, rdf, csv, txt, odf, ooxml, tiff, jpeg"
+Licence type for data reuse;CC-level (0, BY, BY-SA, BY-ND, BY-NC, BY-NC-SA, BY-NC-ND), Custom licence, depending on institutional rules;"Details can be found under ""share licences"" "
+Stage of data processing;Raw data, Processed data (cut/normalized and after quality check), Summarized statistics (means, sd, interquartile ranges, …);
+Storage location/ name of file for nomenclature;File or storage location where the description of the used nomenclature (see marker model) is saved;
+;;
+*Information on encoding/anonymization*;;
+Encoding/ anonymization of personal data;Anonymization method, Responsible person including contact information (email, phone);The responsible person is usually the Principal Investigator. Please discuss it within your project team
+Anonymization of quantitative movement data;"Specify the method that was applied to anonymize quantitative data (for example the use of summarized instead of raw data; using simulated data based on the original data; introduction of statistical error to raw data)";
+;;
+*Information on the data content (description of single files)*;;
+Information on data collection;Include information on the different tests/measurements that have been carried out, and in which files the results of each test/measurement have been saved;"See ""Collect metadata"""
+Information on participants/their characteristics;"See ""Collect metadata""";
+Information on movement data;"See ""Collect metadata""";
+;;
+*Information on data analysis*;;
+Repository/ location where the data has been stored;"Minimal requirement: URL or repository and dataset name. Best practices: provide a repository name and link (e.g. GitHub-Release) and a URI, so the exact version of data can be tracked (e.g. use a repository DOI; GitHub + Zenodo to generate a DOI for the GitHub release)";
+;;
+*Data Sharing - Comments*;;
+Data sharing: additional comment(s);;
