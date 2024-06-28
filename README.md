@@ -1,0 +1,1 @@
+# MoveD Metadata Template generator
