@@ -2,7 +2,7 @@
 Title;Content/Format;Comment;data input
 ;;;
 *General information - minimal*;;;
-Date of data collection;[YYYY-MM-DD];According to ISO 8601;
+Date of data collection;[YYYY-MM-DD];;
 Software(s) used for data collection;;Please describe the type of data which were collected in the following form: sensor type and primary outcome of the research. Examples: Marker-based kinematics, Sensor-based kinematics, Video-based (markerless) kinematics, Surface EMG, Force plate kinetics, Spatiotemporal parameters;
 Hardware which was used for data collection;;Please describe the type of data which were collected in the following form: sensor type and primary outcome of the research.Examples: Marker-based kinematics, Sensor-based kinematics, Video-based (markerless) kinematics, Surface EMG, Force plate kinetics, Spatiotemporal parameters;
 Study-specific inclusion criteria;;Please list all criteria that were defined during study design (a priori). If an ethics proposal had to be submitted, please list the same inclusion criteria in this section.;
@@ -11,7 +11,7 @@ Task(s);List of tasks including description of how they were performed;If walkin
 Naming convention of tasks;Naming convention/ meaning of the abbreviations in the file names.;;
 Randomization of task order (yes/no);;;
 Name of marker model;;;
-Reference to marker model;;;
+Reference to marker model;Author, Year, DOI;;
 Marker/sensor placement(s);List of placed sensors/probes including specific location and orientation of sensor/probe. if applicable, otherwise enter na: include interelectrode distance and/or sensor cap type;If sEMG data is collected, use SENIAM guidelines to report sensor location and orientation. Refer to Standards for Reporting EMG Data https://isek.org/emg-standards/ . Technical guidelines for ultrasound can be found on https://www.essr.org/subcommittees/ultrasound/;
 ;;;
 *General information - if applicable, otherwise enter na*;;;

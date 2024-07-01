@@ -40,13 +40,13 @@
   rounding_entries = numeric_entries
   
   # List of all variables (divided per section)
-  software_collection = c("Name", "Manufacturer", "Version", "Type of data which were collected", "Data format of the raw data (xcp, etc.)")
-  hardware_collection = c("Name", "Manufacturer", "Type of data which were collected", "Electrode material, shape, size (if applicable, otherwise enter na)", "Measurement frequency [Hz]")
+  software_collection = c("Name", "Manufacturer", "Version", "Type of data which were collected (e.g. marker-based kinematics, surface EMG)", "Data format of the raw data (xcp, x1d, x2d etc.)")
+  hardware_collection = c("Name", "Manufacturer", "Type of data which were collected (e.g. marker-based kinematics, surface EMG)", "Electrode material, shape, size (if applicable, otherwise enter na)", "Measurement frequency [Hz]")
   software_processing = c("Name", "Manufacturer", "Version", "Type of data which were processed")
   software_analysis = c("Name", "Manufacturer", "Version (software and used packages)", "Type of data which were analyzed (kinematics, kinetics, EMG, accelerometer, IMU, EEG, plantar pressure, imaging, video)")
   stats_analyses = c("Statistical model", "Number of analyzed parameters", "Type of parameter (dependent)", "Type of parameter (independent)")
-  tasks = c("Naming convention (abbreviation) of task", "Segment name", "Description of task (If walking or running was performed: indicate gait speed)")
-  sensors = c("Abbreviation", "Segment name", "Explanation marker/sensor placement")
+  tasks = c("Naming convention (abbreviation) of task e.g. Squat (sq)", "Description of task (If walking or running was performed: indicate gait speed)")
+  sensors = c("Abbreviation e.g. L/RTHI", "Segment name e.g. Thigh", "Explanation marker/sensor placement e.g. half way down the lateral thigh")
   
   all_variables_collect_participant <- c(
     "Part 1.1: Data Collection - participant specific information" = "Message",
