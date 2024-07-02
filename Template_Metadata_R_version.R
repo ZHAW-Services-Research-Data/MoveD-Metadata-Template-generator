@@ -93,118 +93,118 @@
     "Part 2.2: Data Processing - EMG (if applicable, otherwise enter na)" = "Message",
     "Filter (EMG)" = "optional",
     "Rectification (EMG)" = "optional",
-    "EMG amplitude processing (EMG)" = "optional",
+    "EMG amplitude processing" = "optional",
     "Normalization (EMG)" = "optional",
-    "Exclusion of trials/muscles (EMG)" = "optional",
+    "Exclusion of trials/muscles" = "optional",
     "Analyzed outcomes (EMG)" = "optional",
     "Part 2.3: Data Processing - EEG (if applicable, otherwise enter na)" = "Message",
     "Filter (EEG)" = "optional",
-    "Re-referencing (EEG)" = "optional",
-    "Resampling (EEG)" = "optional",
+    "Re-referencing" = "optional",
+    "Resampling" = "optional",
     "Artifact removal (EEG)" = "optional",
-    "Data epoch extraction (EEG)" = "optional",
-    "Head model (EEG)" = "optional",
-    "Export (if applicable, otherwise enter na) (EEG)" = "optional",
-    "Exclusion of trials (EEG)" = "optional",
+    "Data epoch extraction" = "optional",
+    "Head model" = "optional",
+    "File type after export (EEG)" = "optional",
+    "Criteria for exclusion of data trials/single joints (EEG)" = "optional",
     "Part 2.4: Data Processing - Marker data (if applicable, otherwise enter na)" = "Message",
-    "Labelling (marker data)" = "optional",
+    "Labelling" = "optional",
     "Pipelines (marker data)" = "optional",
-    "Events (if applicable, otherwise enter na) (marker data)" = "optional",
-    "Calculation method (marker data)" = "optional",
+    "Events" = "optional",
+    "Calculation method" = "optional",
     "Naming convention (marker data)" = "optional",
-    "Export (if applicable, otherwise enter na) (marker data)" = "optional",
-    "Exclusion of trials (marker data)" = "optional",
+    "File type after export (marker data)" = "optional",
+    "Criteria for the exclusion of trials/single joints (marker data)" = "optional",
     "Normalization (marker data)" = "optional",
-    "Analyzed outcomes angles (marker data)" = "optional",
-    "Analyzed spatiotemporal outcomes (marker data)" = "optional",
+    "Analyzed outcomes angles" = "optional",
+    "Analyzed spatiotemporal outcomes" = "optional",
     "Part 2.5: Data Processing - Kinetics (if applicable, otherwise enter na)" = "Message",
     "Naming convention (kinetics)" = "optional",
     "Pipelines (kinetics)" = "optional",
-    "Export (if applicable, otherwise enter na) (kinetics)" = "optional",
-    "Exclusion of trials (kinetics)" = "optional",
+    "File type after export (kinetics)" = "optional",
+    "Criteria for exclusion of forces/moments" = "optional",
     "Normalization (kinetics)" = "optional",
-    "Analyzed outcomes moments (kinetics)" = "optional",
-    "Analyzed outcomes forces (kinetics)" = "optional",
+    "Analyzed outcomes moments" = "optional",
+    "Analyzed outcomes forces" = "optional",
     "Part 2.6: Data Processing - IMU (if applicable, otherwise enter na)" = "Message",
     "Naming convention (IMU)" = "optional",
     "Filter (IMU)" = "optional",
-    "Export (if applicable, otherwise enter na) (IMU)" = "optional",
+    "File type after export (IMU)" = "optional",
     "Normalization (IMU)" = "optional",
     "Analyzed outcomes (IMU)" = "optional",
-    "Exclusion of trials (IMU)" = "optional",
+    "Criteria for exclusion of trials (angles, forces, moments, etc.)" = "optional",
     "Part 2.7: Data Processing - plantar pressure (if applicable, otherwise enter na)" = "Message",
-    "Processing steps (plantar pressure)" = "optional",
-    "Exclusion of trials (plantar pressure)" = "optional",
+    "Processing steps" = "optional",
+    "Criteria for exclusion of trials" = "optional",
     "Analyzed outcomes (plantar pressure)" = "optional",
     "Part 2.8: Data Processing - imaging data (if applicable, otherwise enter na)" = "Message",
-    "Algorithms (imaging data)" = "optional",
-    "Exclusion of trials (imaging data)" = "optional",
+    "Applied algorithms for image processing" = "optional",
+    "Criteria for exclusion of images" = "optional",
     "Analyzed outcomes (imaging data)" = "optional",
     "Part 2.9: Data Processing - 2D video (if applicable, otherwise enter na)" = "Message",
-    "Calculation method for joint angles (if applicable, otherwise enter na) (2D video)" = "optional",
+    "Calculation method for joint angles (if applicable, otherwise enter na)" = "optional",
     "Part 2.10: Data processing - Comments: If there are any additional comments you wish to record, please do so in the next prompt." = "Message",
     "Data processing: additional comment(s)" = "not"
   )
   all_variables_process_type <- c(
     "Part 2.1: Data Processing - general information" = "general",
-    "Date(s) of data processing one value per participant" = "general",
+    "Date(s) of data processing (one value per participant)" = "general",
     "Software(s) used for data processing"= "general",
     "Sampling rate" = "general",
     "Quality check (if applicable, otherwise enter na)" = "general",
     "Part 2.2: Data Processing - EMG (if applicable, otherwise enter na)" = "EMG",
     "Filter (EMG)" = "EMG",
     "Rectification (EMG)" = "EMG",
-    "EMG amplitude processing (EMG)" = "EMG",
+    "EMG amplitude processing" = "EMG",
     "Normalization (EMG)" = "EMG",
-    "Exclusion of trials/muscles (EMG)" = "EMG",
+    "Exclusion of trials/muscles" = "EMG",
     "Analyzed outcomes (EMG)" = "EMG",
     "Part 2.3: Data Processing - EEG (if applicable, otherwise enter na)" = "EEG",
     "Filter (EEG)" = "EEG",
-    "Re-referencing (EEG)" = "EEG",
-    "Resampling (EEG)" = "EEG",
+    "Re-referencing" = "EEG",
+    "Resampling" = "EEG",
     "Artifact removal (EEG)" = "EEG",
-    "Data epoch extraction (EEG)" = "EEG",
-    "Head model (EEG)" = "EEG",
-    "Export (if applicable, otherwise enter na) (EEG)" = "EEG",
-    "Exclusion of trials (EEG)" = "EEG",
+    "Data epoch extraction" = "EEG",
+    "Head model" = "EEG",
+    "File type after export (EEG)" = "EEG",
+    "Criteria for exclusion of data trials/single joints (EEG)" = "EEG",
     "Part 2.4: Data Processing - Marker data (if applicable, otherwise enter na)" = "marker",
-    "Labelling (marker data)" = "marker",
+    "Labelling" = "marker",
     "Pipelines (marker data)" = "marker",
-    "Events (if applicable, otherwise enter na) (marker data)" = "marker",
-    "Calculation method (marker data)" = "marker",
+    "Events" = "marker",
+    "Calculation method" = "marker",
     "Naming convention (marker data)" = "marker",
-    "Export (if applicable, otherwise enter na) (marker data)" = "marker",
-    "Exclusion of trials (marker data)" = "marker",
+    "File type after export (marker data)" = "marker",
+    "Criteria for the exclusion of trials/single joints (marker data)" = "marker",
     "Normalization (marker data)" = "marker",
-    "Analyzed outcomes angles (marker data)" = "marker",
-    "Analyzed spatiotemporal outcomes (marker data)" = "marker",
+    "Analyzed outcomes angles" = "marker",
+    "Analyzed spatiotemporal outcomes" = "marker",
     "Part 2.5: Data Processing - Kinetics (if applicable, otherwise enter na)" = "kinetics",
     "Naming convention (kinetics)" = "kinetics",
     "Pipelines (kinetics)" = "kinetics",
-    "Export (if applicable, otherwise enter na) (kinetics)" = "kinetics",
-    "Exclusion of trials (kinetics)" = "kinetics",
+    "File type after export (kinetics)" = "kinetics",
+    "Criteria for exclusion of forces/moments" = "kinetics",
     "Normalization (kinetics)" = "kinetics",
-    "Analyzed outcomes moments (kinetics)" = "kinetics",
-    "Analyzed outcomes forces (kinetics)" = "kinetics",
+    "Analyzed outcomes moments" = "kinetics",
+    "Analyzed outcomes forces" = "kinetics",
     "Part 2.6: Data Processing - IMU (if applicable, otherwise enter na)" = "IMU",
     "Naming convention (IMU)" = "IMU",
     "Filter (IMU)" = "IMU",
-    "Export (if applicable, otherwise enter na) (IMU)" = "IMU",
+    "File type after export (IMU)" = "IMU",
     "Normalization (IMU)" = "IMU",
     "Analyzed outcomes (IMU)" = "IMU",
-    "Exclusion of trials (IMU)" = "IMU",
+    "Criteria for exclusion of trials (angles, forces, moments, etc.)" = "IMU",
     "Part 2.7: Data Processing - plantar pressure (if applicable, otherwise enter na)" = "plantar",
-    "Processing steps (plantar pressure)" = "plantar",
-    "Exclusion of trials (plantar pressure)" = "plantar",
+    "Processing steps" = "plantar",
+    "Criteria for exclusion of trials" = "plantar",
     "Analyzed outcomes (plantar pressure)" = "plantar",
     "Part 2.8: Data Processing - imaging data (if applicable, otherwise enter na)" = "imaging",
-    "Algorithms (imaging data)" = "imaging",
-    "Exclusion of trials (imaging data)" = "imaging",
+    "Applied algorithms for image processing" = "imaging",
+    "Criteria for exclusion of images" = "imaging",
     "Analyzed outcomes (imaging data)" = "imaging",
     "Part 2.9: Data Processing - 2D video (if applicable, otherwise enter na)" = "2dvideo",
-    "Calculation method for joint angles (if applicable, otherwise enter na) (2D video)" = "2dvideo",
-    "Part 2.10: Data processing - Comments: If there are any additional comments you wish to record, please do so in the next prompt." = "Message",
-    "Data processing: additional comment(s)" = "not"
+    "Calculation method for joint angles (if applicable, otherwise enter na)" = "2dvideo",
+    "Part 2.10: Data processing - Comments: If there are any additional comments you wish to record, please do so in the next prompt." = "general",
+    "Data processing: additional comment(s)" = "general"
   )
   all_variables_analyze <- c(
     "Part 3.1: Data Analysis - general information" = "Message",
@@ -302,11 +302,7 @@ round_to_n <- function(value, variable, n=2){
     if (variable %in% numeric_entries){
       continue_query = TRUE
       while (continue_query){
-        if (popup){
-          value_entered = dlgInput(toString(base_message), default="", Sys.info()["user"], rstudio=T)$res
-        } else{
-          value_entered = readline(prompt=base_message)
-        }
+        value_entered = trycatch_null(toString(base_message), popup)
         
         if (value_entered == "na" | ! is.na(as.numeric(value_entered))){
           continue_query = FALSE
@@ -320,15 +316,11 @@ round_to_n <- function(value, variable, n=2){
       }
     } else{
       # Second do all other cases
-      if (popup){
-        value_entered = dlgInput(toString(base_message), type="ok", default="", Sys.info()["user"], rstudio=T)$res
-      } else{
-        value_entered = readline(prompt=base_message)
-      }
+      value_entered = trycatch_null(toString(base_message), popup)
     }
     
     # Check if the variable needs to be rounded, and do so
-    if (variable %in% rounding_entries & value_entered != "na"){
+    if (variable %in% rounding_entries & value_entered != "na" & !is.null(value_entered)){
       value_entered = round_to_n(value_entered, variable, n=2)
     }
       
@@ -339,6 +331,9 @@ round_to_n <- function(value, variable, n=2){
 
 # 6. Query the user for the inputs needed to create the output dataframe ####
 create_df <- function(dataframe, popup, part, all_variables_process){
+  #Create a variable to check if the process needs to be continued or not
+  continue_process = TRUE
+  
   #Check which part of the metadata is being filled out
   if (part == "collect (participant data)"){
     all_variables_named <- all_variables_collect_participant
@@ -360,21 +355,31 @@ create_df <- function(dataframe, popup, part, all_variables_process){
     #Check if imaging is in the df for analyze --> softwares
     if (var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)"){
       # Ask the user if imagine data was analyzed
-      if (popup) {
-        imaging_yn <- trimws(tolower(dlgInput("Was imaging data analyzed? Enter 'yes' or 'no': ", default="", Sys.info()["user"], rstudio=T)$res))
-      } else{
-        print("Was imaging data analyzed?")
-        imaging_yn <- readline(prompt="Enter 'yes' or 'no': ")
+      imaging_yn = trycatch_null(toString("Was imaging data analyzed? Enter 'yes' or 'no'"), popup)
+      if (is.null(imaging_yn)){
+        continue_process = FALSE
+        break
+      } else {
+        imaging_yn = trimws(tolower(imaging_yn))
       }
+      
       #Check if the input is correct
       while (imaging_yn != "yes" & imaging_yn != "no"){
         if (popup){
           dlgMessage("Please enter 'yes' or 'no'", type="ok", Sys.info()["user"], rstudio=T)
-          imaging_yn <- trimws(tolower(dlgInput("Was imaging data analyzed? Enter 'yes' or 'no': ", default="", Sys.info()["user"], rstudio=T)$res))
-        } else{
+          } else{
           print("Please enter 'yes' or 'no'")
-          imaging_yn <- readline(prompt="Enter 'yes' or 'no': ")
+          }
+        imaging_yn = trycatch_null(toString("Was imaging data analyzed? Enter 'yes' or 'no'"), popup)
+        if (is.null(imaging_yn)){
+          continue_process = FALSE
+          break
+        } else {
+          imaging_yn = trimws(tolower(imaging_yn))
         }
+      }
+      if(continue_process == FALSE){
+        break
       }
       
       #If yes, set the imaging_TF to TRUE
@@ -385,7 +390,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
     
     #Create a message if it's just a message variable
     if ((all_variables_named[var_name] == "Message" & var_name != "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)") | 
-         (var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)" & imaging_TF)){
+        (var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)" & imaging_TF)){
       if (popup){
         dlgMessage(toString(var_name), type="ok", Sys.info()["user"], rstudio=T)
       } else{
@@ -394,9 +399,15 @@ create_df <- function(dataframe, popup, part, all_variables_process){
     } else if (all_variables_named[var_name] == "not" | all_variables_named[var_name] == "optional"){
       
       #Cases where the variable is not repeated
-      dataframe[which(dataframe[1] == var_name), 4] = query_user(
-        var_name, dataframe, all_variables_named, popup
-      )
+      output_text = query_user(
+        var_name, dataframe, all_variables_named, popup)
+      if (is.null(output_text)){
+        continue_process == FALSE
+        break
+      } else {
+        dataframe[which(dataframe[1] == var_name), 4] = output_text
+      }
+      
     } else if (all_variables_named[var_name] %in% c("software_collection", "hardware_collection", "software_processing", "software_analysis", "stats", "tasks", "sensor")){
       if (all_variables_named[var_name] == "hardware_collection"){
         message_word = "hardware"
@@ -414,11 +425,14 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       if (var_name != "Statistical analysis (if performed)" | (var_name == "Statistical analysis (if performed)" & imaging_TF)){
         cont_query=TRUE
         while(cont_query){
-          if (popup){
-            number_soft = as.integer(dlgInput(paste0(toString(var_name), ": How many ", toString(message_word), " do you wish to record?"), type="ok", default="", Sys.info()["user"], rstudio=T)$res)
-          } else{
-            number_soft = as.integer(readline(prompt=paste0(var_name, ": How many ", message_word, " do you wish to record?")))
+          number_soft = trycatch_null(toString(paste0(toString(var_name), ": How many ", toString(message_word), " do you wish to record?")), popup)
+          if (is.null(number_soft)){
+            continue_process = FALSE
+            break
+          } else {
+            number_soft = as.integer(number_soft)
           }
+          
           if (!is.na(number_soft)){
             cont_query = FALSE
           } else {
@@ -429,15 +443,30 @@ create_df <- function(dataframe, popup, part, all_variables_process){
             }
           }
         }
+        if (continue_process == FALSE){
+          break
+        }
+        
         #Loop over the number of softwares, and add to the dataframe
         if (number_soft > 0){
           for (i in 1:number_soft){
-            if (i == 1){
-              dataframe[which(dataframe[1] == var_name), 4] = query_software_hardware(var_name, i, popup)
+            output_text = query_software_hardware(var_name, i, popup)
+            if (is.null(output_text)){
+              continue_process = FALSE
+              break
             } else {
-              dataframe[which(dataframe[1] == var_name), 4] = paste0(dataframe[which(dataframe[1] == var_name), 4], "\n;;;",  
-                                                                     query_software_hardware(var_name, i, popup))
+              if (i == 1){
+                dataframe[which(dataframe[1] == var_name), 4] = output_text
+              } else {
+                dataframe[which(dataframe[1] == var_name), 4] = paste0(dataframe[which(dataframe[1] == var_name), 4], "\n;;;",  
+                                                                       output_text)
+              }
+              
             }
+          }
+          
+          if (continue_process == FALSE){
+            break
           }
         }
       }
@@ -449,10 +478,11 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       #Check how many values need to be added
       cont_query=TRUE
       while(cont_query){
-        if (popup){
-          number_inc = as.integer(dlgInput(paste0("How many ", toString(var_name), " do you wish to record?"), type="ok", default="", Sys.info()["user"], rstudio=T)$res)
-        } else{
-          number_inc = as.integer(readline(prompt=paste0("How many ", var_name, " do you wish to record?")))
+        number_inc = trycatch_null(toString(paste0("How many ", toString(var_name), " do you wish to record?")), popup)
+        if (is.null(number_inc)){
+          continue_process = FALSE
+        } else {
+          number_inc = as.integer(number_inc)
         }
         if (!is.na(number_inc)){
           cont_query = FALSE
@@ -467,17 +497,29 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       #Loop over the number of repeated variables, and add to the dataframe
       if (number_inc > 0){
         for (i in 1:number_inc){
-          if (i == 1){
-            dataframe[which(dataframe[1] == var_name), 4] = query_user(
-              var_name, dataframe, all_variables_named, popup, extra=paste0(var_name, " ", as.character(i), ": "))
-          } else {
-            dataframe[which(dataframe[1] == var_name), 4] = paste0(dataframe[which(dataframe[1] == var_name), 4] , "\n;;;", query_user(
-              var_name, dataframe, all_variables_named, popup, extra=paste0(var_name, " ", as.character(i), ": ")
-            ))
+          output_text = query_user(var_name, dataframe, all_variables_named, popup, extra=paste0(var_name, " ", as.character(i), ": "))
+          if(is.null(output_text)){
+            continue_process = FALSE
+          } else{
+            if (i == 1){
+              dataframe[which(dataframe[1] == var_name), 4] = output_text
+            } else {
+              dataframe[which(dataframe[1] == var_name), 4] = paste0(dataframe[which(dataframe[1] == var_name), 4] , "\n;;;", output_text)
+            }
           }
+          
         }
       }
       
+    }
+  }
+  
+  #In case the output got terminated, provide an information comment
+  if (continue_process == FALSE){
+    if (popup){
+      dlgMessage(paste0("The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved"), type="ok", Sys.info()["user"], rstudio=T)
+    } else{
+      print(paste0("The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved"))
     }
   }
   
@@ -494,33 +536,36 @@ save_data <- function(data_processed, extra, popup=FALSE){
     print("Data saving")
   }
   
-  # Write the output to a new file, with the user specifying the name
+  # Write the output to a new file, with the user specifying the name, add a cancel option
   continue_query = TRUE
-  while (continue_query) {
-    #Query the user for an output file name
-    if (popup==FALSE) {
-      output_file <- paste0("Output/", readline(prompt="Enter the output file name (without extension): "), extra, ".csv")
-    } else {
-      output_file <- paste0("Output/", dlgInput("Enter the output file name (without extension): ", default="", Sys.info()["user"], rstudio=T)$res, extra, ".csv")
-    }
-    
-    # Check if the file already exists
-    if (file.exists(output_file)){
-      if (popup){
-        validate_file = dlgInput("File already exists, do you wish to overwrite it? (y/n): ", default="", Sys.info()["user"], rstudio=T)$res
-      } else {
-        validate_file = readline(prompt="File already exists, do you wish to overwrite it? (y/n): ")
-      }
-      if (trimws(tolower(validate_file)) == "y" || trimws(tolower(validate_file)) == "yes"){
-        continue_query = FALSE
-      }
-    } else {
-      continue_query = FALSE
-    }
+  continue_save = TRUE
+  #Query the user for an output file name
+  output_text = trycatch_null(toString("Enter the output file name (without extension): "), popup)
+  if (is.null(output_text)){
+    continue_save = FALSE
+  } else {
+    output_file <- paste0("Output/", output_text, extra, ".csv")
   }
   
-  # Write the output to a csv file with semicolon separator
-  write.table(data_processed, file = output_file, quote = FALSE, col.names = FALSE, sep = ";", row.names=FALSE, fileEncoding="UTF-8", na="") 
+  # Check if the file already exists
+  if (file.exists(output_file)){
+    if (popup){
+      validate_file = dlgInput("File already exists, do you wish to overwrite it? (y/n): ", default="", Sys.info()["user"], rstudio=T)$res
+    } else {
+      validate_file = readline(prompt="File already exists, do you wish to overwrite it? (y/n): ")
+    }
+    if (trimws(tolower(validate_file)) == "y" || trimws(tolower(validate_file)) == "yes"){
+      continue_query = FALSE
+    }
+  } else {
+    continue_query = FALSE
+  }
+  
+  if (continue_save){
+    # Write the output to a csv file with semicolon separator
+    write.table(data_processed, file = output_file, quote = FALSE, col.names = FALSE, sep = ";", row.names=FALSE, fileEncoding="UTF-8", na="") 
+    
+  }
 }
 
 # 8. Create a function to query about the software and hardware used ####
@@ -551,6 +596,7 @@ query_software_hardware <- function(variable, i, popup=FALSE){
   }
   
   #Ask the user to input the variables for the software/hardware and add them to the string, separated by a comma
+  continue_process = TRUE
   for (var in variable_list){
     if (startsWith(output_str, "Software")){
       message = paste0("Enter the ", var, " for software ", as.character(i), ": ")
@@ -564,12 +610,13 @@ query_software_hardware <- function(variable, i, popup=FALSE){
       message = paste0("Enter the ", var, " for hardware ", as.character(i), ": ")
     }
     
-    if (popup){
-      value_entered = dlgInput(toString(message), default="", Sys.info()["user"], rstudio=T)$res
+    value_entered = trycatch_null(toString(message), popup)
+    if (is.null(value_entered)){
+      break
     } else {
-      value_entered = readline(prompt=message)
+      output_str = paste0(output_str, "[", var, "] ", value_entered, " - ")
     }
-    output_str = paste0(output_str, "[", var, "] ", value_entered, " - ")
+    
   }
   
   #Remove the last dash from the string
@@ -590,21 +637,33 @@ main <- function(){
   }
   
   # First ask the user which part of the metadata will be filled out: all, collect, process, analyze, or share
-  if (popup){
-    part_metadata = trimws(tolower(dlgInput("Which part of the metadata will be filled out? (all, collect (participant data), collect (general data), process, analyze, share)", 
-                                             type="ok", default="", Sys.info()["user"], rstudio=T)$res))
+  part_metadata = trycatch_null("Which part of the metadata will be filled out? (all, collect (participant data), collect (general data), process, analyze, share)", popup)
+  if (part_metadata == FALSE){
+    if (popup){
+      dlgMessage("Input cancelled by user, program will be terminated", type="ok", Sys.info()["user"], rstudio=T)
+    } else {
+      print("Input cancelled by user, program will be terminated")
+    }
+    quit()
   } else {
-    part_metadata = trimws(tolower(readline(prompt="Which part of the metadata will be filled out? (all, collect (participant data), collect (general data), process, analyze, share)")))
+    part_metadata = trimws(tolower(part_metadata))
   }
+  
   # Check if the user input is valid
   while (part_metadata != "all" && part_metadata != "collect (participant data)" && part_metadata != "collect (general data)" && part_metadata != "process" && part_metadata != "analyze" && part_metadata != "share"){
-    if (popup){
-      part_metadata = trimws(tolower(dlgInput("Please enter a valid option (all, collect (participant data), collect (general data), process, analyze, share): ", 
-                                              type="ok", Sys.info()["user"], rstudio=T)))
+    part_metadata = trycatch_null("Please enter a valid option: (all, collect (participant data), collect (general data), process, analyze, share)", popup)
+    if (is.null(part_metadata)){
+      if (popup){
+        dlgMessage("Input cancelled by user, program will be terminated", type="ok", Sys.info()["user"], rstudio=T)
+      } else {
+        print("Input cancelled by user, program will be terminated")
+      }
+      quit()
     } else {
-      part_metadata = trimws(tolower(readline(prompt="Please enter a valid option (all, collect (participant data), collect (general data), process, analyze, share): ")))
+      part_metadata = trimws(tolower(part_metadata))
     }
   }
+  
   
   #Create the output folder in case it does not exist yet.
   if (!dir.exists("Output")){
@@ -624,6 +683,9 @@ main <- function(){
     save_data(data_processed, "_collect_general", popup)
   }else if (part_metadata == "process"){
     all_variables_process_reworked = check_optional_data(all_variables_process, all_variables_process_type, popup)
+    if (is.null(all_variables_process_reworked)){
+      quit()
+    }
     input_file <- "Input/Metadata_Template_Process.csv"
     data <- read.csv(input_file, header = F, sep = ";", dec = ".", stringsAsFactors = FALSE)
     data_processed = create_df(data, popup, part="process", all_variables_process=all_variables_process_reworked)
@@ -651,6 +713,9 @@ main <- function(){
     
     input_file <- "Input/Metadata_Template_Process.csv"
     all_variables_process_reworked = check_optional_data(all_variables_process, all_variables_process_type, popup)
+    if (is.null(all_variables_process_reworked)){
+      quit()
+    }
     data_process <- read.csv(input_file, header = F, sep = ";", dec = ".", stringsAsFactors = FALSE)
     data_process_processed = create_df(data_process, popup, part="process", all_variables_process=all_variables_process_reworked)
     save_data(data_process_processed, "_process", popup)
@@ -669,160 +734,213 @@ main <- function(){
 
 # 10. Create a function to check which types of optional data have been processed, and filter the reference data accordingly ####
 check_optional_data <- function(all_variables_process, all_variables_process_type, popup){
+  continue_process = TRUE
   
   # Ask the user if EMG data has been collected
-  if (popup){
-    emg_collected = trimws(tolower(dlgInput("Has EMG data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    emg_collected = trimws(tolower(readline(prompt="Has EMG data been collected? (yes/no)")))
+  emg_collected = trycatch_null("Has EMG data been collected? (yes/no)", popup)
+  if(is.null(emg_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    emg_collected = trimws(tolower(emg_colleccted))
   }
-  # Check if the user input is valid
   while (emg_collected != "yes" && emg_collected != "no"){
-    if (popup){
-      emg_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      emg_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+    emg_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(emg_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      emg_collected = trimws(tolower(emg_colleccted))
+    } 
   }
   
   # Do the same for the EEG data
-  if (popup){
-    eeg_collected = trimws(tolower(dlgInput("Has EEG data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    eeg_collected = trimws(tolower(readline(prompt="Has EEG data been collected? (yes/no)")))
+  eeg_collected = trycatch_null("Has EEG data been collected? (yes/no)", popup)
+  if(is.null(eeg_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    eeg_collected = trimws(tolower(eeg_colleccted))
   }
-  # Check if the user input is valid
   while (eeg_collected != "yes" && eeg_collected != "no"){
-    if (popup){
-      eeg_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      eeg_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+    eeg_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(eeg_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      eeg_collected = trimws(tolower(eeg_colleccted))
+    } 
   }
   
-  # Then do the same for the marker data
-  if (popup){
-    markers_collected = trimws(tolower(dlgInput("Have marker data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    markers_collected = trimws(tolower(readline(prompt="Have marker data been collected? (yes/no)")))
+  # Do the same for the marker data
+  marker_collected = trycatch_null("Has marker data been collected? (yes/no)", popup)
+  if(is.null(marker_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    marker_collected = trimws(tolower(marker_colleccted))
   }
-  # Check if the user input is valid
-  while (markers_collected != "yes" && markers_collected != "no"){
-    if (popup){
-      markers_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      markers_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+  while (marker_collected != "yes" && marker_collected != "no"){
+    marker_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(marker_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      marker_collected = trimws(tolower(marker_colleccted))
+    } 
   }
   
-  # Then do the same for the kinetics data
-  if (popup){
-    kinetics_collected = trimws(tolower(dlgInput("Have kinetics data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    kinetics_collected = trimws(tolower(readline(prompt="Have kinetics data been collected? (yes/no)")))
+  # Do the same for the kinetics data
+  kinetics_collected = trycatch_null("Has kinetics data been collected? (yes/no)", popup)
+  if(is.null(kinetics_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    kinetics_collected = trimws(tolower(kinetics_colleccted))
   }
-  # Check if the user input is valid
   while (kinetics_collected != "yes" && kinetics_collected != "no"){
-    if (popup){
-      kinetics_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      kinetics_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+    kinetics_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(kinetics_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      kinetics_collected = trimws(tolower(kinetics_colleccted))
+    } 
   }
   
-  # Then do the same for the IMU data
-  if (popup){
-    imu_collected = trimws(tolower(dlgInput("Have IMU data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    imu_collected = trimws(tolower(readline(prompt="Have IMU data been collected? (yes/no)")))
+  # Do the same for the IMU data
+  imu_collected = trycatch_null("Has IMU data been collected? (yes/no)", popup)
+  if(is.null(imu_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    imu_collected = trimws(tolower(imu_collected))
   }
-  # Check if the user input is valid
   while (imu_collected != "yes" && imu_collected != "no"){
-    if (popup){
-      imu_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      imu_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+    imu_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(imu_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      imu_collected = trimws(tolower(imu_colleccted))
+    } 
   }
   
-  # Then do the same for plantar pressure data
-  if (popup){
-    pressure_collected = trimws(tolower(dlgInput("Has plantar pressure data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    pressure_collected = trimws(tolower(readline(prompt="Has plantar pressure data been collected? (yes/no)")))
+  # Do the same for the pressure data
+  pressure_collected = trycatch_null("Has plantar pressure data been collected? (yes/no)", popup)
+  if(is.null(pressure_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    pressure_collected = trimws(tolower(pressure_collected))
   }
-  # Check if the user input is valid
   while (pressure_collected != "yes" && pressure_collected != "no"){
-    if (popup){
-      pressure_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      pressure_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+    pressure_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(pressure_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      pressure_collected = trimws(tolower(pressure_colleccted))
+    } 
   }
   
-  # Then do the same for imaging data 
-  if (popup){
-    imaging_collected = trimws(tolower(dlgInput("Has imaging data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    imaging_collected = trimws(tolower(readline(prompt="Has imaging data been collected? (yes/no)")))
+  # Do the same for the imaging data
+  imaging_collected = trycatch_null("Has imaging data been collected? (yes/no)", popup)
+  if(is.null(imaging_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    imaging_collected = trimws(tolower(imaging_collected))
   }
-  
-  # Check if the user input is valid
   while (imaging_collected != "yes" && imaging_collected != "no"){
-    if (popup){
-      imaging_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      imaging_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+    imaging_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(imaging_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      imaging_collected = trimws(tolower(imaging_colleccted))
+    } 
   }
   
-  # Then do the same for 2D video data
-  if (popup){
-    video2d_collected = trimws(tolower(dlgInput("Has 2D video data been collected? (yes/no)", type="ok", default="", Sys.info()["user"], rstudio=T)$res))
-  } else {
-    video2d_collected = trimws(tolower(readline(prompt="Has 2D video data been collected? (yes/no)")))
+  # Do the same for the 2D video data
+  video2d_collected = trycatch_null("Has 2D video data been collected? (yes/no)", popup)
+  if(is.null(video2d_collected)){
+    continue_process = FALSE
+    break
+  }else {
+    video2d_collected = trimws(tolower(video2d_collected))
   }
-  # Check if the user input is valid
   while (video2d_collected != "yes" && video2d_collected != "no"){
-    if (popup){
-      video2d_collected = trimws(tolower(dlgInput("Please enter a valid option (yes/no): ", type="ok", Sys.info()["user"], rstudio=T)))
-    } else {
-      video2d_collected = trimws(tolower(readline(prompt="Please enter a valid option (yes/no): ")))
-    }
+    video2d_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
+    if(is.null(video2d_collected)){
+      continue_process = FALSE
+      break
+    }else {
+      video2d_collected = trimws(tolower(video2d_colleccted))
+    } 
   }
   
   #Finally, filter the "all_variables_process" list based on the user input
-  if (eeg_collected == "no"){
+  if (eeg_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("EEG", all_variables_process_type)]
   }
-  if (emg_collected == "no"){
+  if (emg_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("EMG", all_variables_process_type)]
   }
-  if (markers_collected == "no"){
+  if (marker_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("marker", all_variables_process_type)]
   }
-  if (kinetics_collected == "no"){
+  if (kinetics_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("kinetics", all_variables_process_type)]
   }
-  if (imu_collected == "no"){
+  if (imu_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("IMU", all_variables_process_type)]
   }
-  if (pressure_collected == "no"){
+  if (pressure_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("plantar", all_variables_process_type)]
   }
-  if (imaging_collected == "no"){
+  if (imaging_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("imaging", all_variables_process_type)]
   }
-  if (video2d_collected == "no"){
+  if (video2d_collected != "yes"){
     all_variables_process_type <- all_variables_process_type[!grepl("2dvideo", all_variables_process_type)]
   }
   
   #Now filter the original all_variable_process based on the all_variables_process_type
   all_variables_process <- all_variables_process[names(all_variables_process) %in% names(all_variables_process_type)]
   
-  return(all_variables_process)
+  if (continue_process){
+    return(all_variables_process)
+  } else {
+    return(NULL)
+  }
+}
+
+# 11. Create a function that does a try-catch when entering data, to catch a "cancel" or interrupted input ####
+trycatch_null = function(display_text, popup=TRUE){
+  if(popup){
+    #Get the input from the user
+    input_text = dlg_input(message=display_text, type="ok", default="", Sys.info()["user"], rstudio=T)
+    
+    # if the user cancelled, return a None type (NULL) object
+    if (!length(input_text$res)){
+      return(NULL) 
+    } else{
+      return(input_text$res)
+    }
+  } else {
+    #Get the input from the user
+    input = readline(prompt=display_text)
+    
+    #If the entered string is empty, return a NULL object, otherwise return the string
+    if (length(input) == 0){
+      return(NULL)
+    } else {
+      return(input)
+    }
+  }
 }
   
-# 11. Run the main function
+# 12. Run the main function
 main()
 
