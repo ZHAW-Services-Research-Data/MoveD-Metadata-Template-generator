@@ -303,8 +303,9 @@ round_to_n <- function(value, variable, n=2){
       continue_query = TRUE
       while (continue_query){
         value_entered = trycatch_null(toString(base_message), popup)
-        
-        if (value_entered == "na" | ! is.na(as.numeric(value_entered))){
+        if(is.null(value_entered)){
+          return(NULL)
+        }else if (value_entered == "na" | ! is.na(as.numeric(value_entered))){
           continue_query = FALSE
         } else{
           if (popup){
@@ -320,8 +321,10 @@ round_to_n <- function(value, variable, n=2){
     }
     
     # Check if the variable needs to be rounded, and do so
-    if (variable %in% rounding_entries & value_entered != "na" & !is.null(value_entered)){
-      value_entered = round_to_n(value_entered, variable, n=2)
+    if (!is.null(value_entered) ){
+      if (variable %in% rounding_entries & value_entered != "na"){
+        value_entered = round_to_n(value_entered, variable, n=2)
+      }
     }
       
     # Finally, return the output
@@ -402,7 +405,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       output_text = query_user(
         var_name, dataframe, all_variables_named, popup)
       if (is.null(output_text)){
-        continue_process == FALSE
+        continue_process = FALSE
         break
       } else {
         dataframe[which(dataframe[1] == var_name), 4] = output_text
@@ -449,6 +452,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
         
         #Loop over the number of softwares, and add to the dataframe
         if (number_soft > 0){
+          continue_process = TRUE
           for (i in 1:number_soft){
             output_text = query_software_hardware(var_name, i, popup)
             if (is.null(output_text)){
@@ -477,10 +481,12 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       #Cases that are repeated but are not software/hardware
       #Check how many values need to be added
       cont_query=TRUE
+      continue_process = TRUE
       while(cont_query){
         number_inc = trycatch_null(toString(paste0("How many ", toString(var_name), " do you wish to record?")), popup)
         if (is.null(number_inc)){
           continue_process = FALSE
+          break
         } else {
           number_inc = as.integer(number_inc)
         }
@@ -494,12 +500,17 @@ create_df <- function(dataframe, popup, part, all_variables_process){
           }
         }
       }
+      if (continue_process == FALSE){
+        break
+      }
       #Loop over the number of repeated variables, and add to the dataframe
       if (number_inc > 0){
+        continue_process = TRUE
         for (i in 1:number_inc){
           output_text = query_user(var_name, dataframe, all_variables_named, popup, extra=paste0(var_name, " ", as.character(i), ": "))
           if(is.null(output_text)){
             continue_process = FALSE
+            break
           } else{
             if (i == 1){
               dataframe[which(dataframe[1] == var_name), 4] = output_text
@@ -508,6 +519,9 @@ create_df <- function(dataframe, popup, part, all_variables_process){
             }
           }
           
+        }
+        if(continue_process == FALSE){
+          break
         }
       }
       
@@ -543,29 +557,36 @@ save_data <- function(data_processed, extra, popup=FALSE){
   output_text = trycatch_null(toString("Enter the output file name (without extension): "), popup)
   if (is.null(output_text)){
     continue_save = FALSE
+    #Inform the user that the saving has been cancelled
+    if (popup){
+      dlgMessage(paste0("The saving of the data has been cancelled by the user."), type="ok", Sys.info()["user"], rstudio=T)
+    } else {
+      print(paste0("The saving of the data has been cancelled by the user."))
+    }
   } else {
     output_file <- paste0("Output/", output_text, extra, ".csv")
-  }
-  
-  # Check if the file already exists
-  if (file.exists(output_file)){
-    if (popup){
-      validate_file = dlgInput("File already exists, do you wish to overwrite it? (y/n): ", default="", Sys.info()["user"], rstudio=T)$res
+    # Check if the file already exists
+    if (file.exists(output_file)){
+      if (popup){
+        validate_file = dlgInput("File already exists, do you wish to overwrite it? (y/n): ", default="", Sys.info()["user"], rstudio=T)$res
+      } else {
+        validate_file = readline(prompt="File already exists, do you wish to overwrite it? (y/n): ")
+      }
+      if (trimws(tolower(validate_file)) == "y" || trimws(tolower(validate_file)) == "yes"){
+        continue_query = FALSE
+      }
     } else {
-      validate_file = readline(prompt="File already exists, do you wish to overwrite it? (y/n): ")
-    }
-    if (trimws(tolower(validate_file)) == "y" || trimws(tolower(validate_file)) == "yes"){
       continue_query = FALSE
     }
-  } else {
-    continue_query = FALSE
+    
+    if (continue_save){
+      # Write the output to a csv file with semicolon separator
+      write.table(data_processed, file = output_file, quote = FALSE, col.names = FALSE, sep = ";", row.names=FALSE, fileEncoding="UTF-8", na="") 
+      
+    }
   }
   
-  if (continue_save){
-    # Write the output to a csv file with semicolon separator
-    write.table(data_processed, file = output_file, quote = FALSE, col.names = FALSE, sep = ";", row.names=FALSE, fileEncoding="UTF-8", na="") 
-    
-  }
+  
 }
 
 # 8. Create a function to query about the software and hardware used ####
@@ -742,7 +763,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
     continue_process = FALSE
     break
   }else {
-    emg_collected = trimws(tolower(emg_colleccted))
+    emg_collected = trimws(tolower(emg_collected))
   }
   while (emg_collected != "yes" && emg_collected != "no"){
     emg_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
@@ -750,7 +771,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      emg_collected = trimws(tolower(emg_colleccted))
+      emg_collected = trimws(tolower(emg_collected))
     } 
   }
   
@@ -760,7 +781,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
     continue_process = FALSE
     break
   }else {
-    eeg_collected = trimws(tolower(eeg_colleccted))
+    eeg_collected = trimws(tolower(eeg_collected))
   }
   while (eeg_collected != "yes" && eeg_collected != "no"){
     eeg_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
@@ -768,7 +789,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      eeg_collected = trimws(tolower(eeg_colleccted))
+      eeg_collected = trimws(tolower(eeg_collected))
     } 
   }
   
@@ -778,7 +799,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
     continue_process = FALSE
     break
   }else {
-    marker_collected = trimws(tolower(marker_colleccted))
+    marker_collected = trimws(tolower(marker_collected))
   }
   while (marker_collected != "yes" && marker_collected != "no"){
     marker_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
@@ -786,7 +807,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      marker_collected = trimws(tolower(marker_colleccted))
+      marker_collected = trimws(tolower(marker_collected))
     } 
   }
   
@@ -796,7 +817,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
     continue_process = FALSE
     break
   }else {
-    kinetics_collected = trimws(tolower(kinetics_colleccted))
+    kinetics_collected = trimws(tolower(kinetics_collected))
   }
   while (kinetics_collected != "yes" && kinetics_collected != "no"){
     kinetics_collected = trycatch_null("Please enter a valid option (yes/no)", popup)
@@ -804,7 +825,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      kinetics_collected = trimws(tolower(kinetics_colleccted))
+      kinetics_collected = trimws(tolower(kinetics_collected))
     } 
   }
   
@@ -822,7 +843,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      imu_collected = trimws(tolower(imu_colleccted))
+      imu_collected = trimws(tolower(imu_collected))
     } 
   }
   
@@ -840,7 +861,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      pressure_collected = trimws(tolower(pressure_colleccted))
+      pressure_collected = trimws(tolower(pressure_collected))
     } 
   }
   
@@ -858,7 +879,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      imaging_collected = trimws(tolower(imaging_colleccted))
+      imaging_collected = trimws(tolower(imaging_collected))
     } 
   }
   
@@ -876,7 +897,7 @@ check_optional_data <- function(all_variables_process, all_variables_process_typ
       continue_process = FALSE
       break
     }else {
-      video2d_collected = trimws(tolower(video2d_colleccted))
+      video2d_collected = trimws(tolower(video2d_collected))
     } 
   }
   

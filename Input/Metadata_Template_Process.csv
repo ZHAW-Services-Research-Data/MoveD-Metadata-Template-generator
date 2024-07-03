@@ -1,71 +1,71 @@
-﻿##Data processing,,
-Title,Content/Format,Comment
-,,
-*General information*,,
-Date(s) of data processing (one value per participant),[YYYY-MM-DD],According to ISO 8601
-Software(s) used for data processing,,"Please describe the type of data which were collected in the following form: sensor type and outcome of primary interest. Examples: Marker-based kinematics, Sensor-based kinematics, Video-based (markerless) kinematics, Surface EMG, Force plate kinetics, Spatiotemporal parameters, EEG, Medical imaging, Plantar pressure, 2D video"
-Sampling rate,[Hz],"If re-sampled after collection, otherwise enter ""na"" if the sampling rate has not been changed"
-"Quality check (if applicable, otherwise enter na)","Describe how data quality was assessed e.g. visually by the four-eye-principle. Automatic outlier detection and removal, ...","For a manual, visual quality check please indicate the criteria used. For automatic outlier detection, describe the calculation method/algorithm used."
-,,
-"*Processing of EMG (if applicable, otherwise enter na)",,
-Filter (EMG),"Type of filter (Butterworth, Chebyshev, etc.), Low/high pass cut-off frequencies [Hz], Slopes of the cut-offs (if applicable, otherwise enter na)",According to standards for reporting EMG data (https://isek.org/emg-standards/)
-Rectification (EMG),Yes/No (full or half-wave),
-EMG amplitude processing,"No processing, RMS, ARV, MAV, IEMG","RMS = root mean square, ARV = average rectified value, MAV = mean absolute value, IEMG = integrated EMG (area under the curve)"
-Normalization (EMG),"MVC for EMG (including how subjects were trained, etc.), RVC, Amplitude normalization (to mean value or peak value), Time normalization, No normalization",According to standards for reporting EMG data (https://isek.org/emg-standards/)
-Exclusion of trials/muscles,"Criteria for exclusion of trials/muscles -> e.g. artefacts (how are they defined as artefacts), missing signal. What part of the data is deleted (raw data, processed data)",
-Analyzed outcomes (EMG),"Each mean, maximal or minimal value over trial (please report which variable you used and during which phase of the movement it was extracted): RMS of amplitude, ARV of amplitude, Rectified full wave EMG signal, Envelope, On/off detection e.g. on/off time, Area under the curve slope, …","RMS = root mean square, ARV = average rectified value, Also include a reference to the chosen calculation methods for EM"
-,,
-"*Processing of EEG (if applicable, otherwise enter na)",,
-Filter (EEG),"Type of filter (basic FIR filter, FFT linear filter, short infinite impulse response, notch filtering, etc.), Low/high pass cut-off frequency",
-Re-referencing,"Specify reference electrode, State if data was re-referenced to a specific electrode or if average reference was computed",
-Resampling,"Specify if and how you re-sampled data. If not re-sampled, state na",
-Artifact removal (EEG),"Specify which channels were rejected and whether automatically or manually (if applicable, otherwise enter na). Specify if an individual component analysis was performed and which algorithm was used",
-Data epoch extraction,List which event type and epoch limit was used to extract data epochs. Baseline removal latency range [ms],
-Head model,Which head model was used,
-File type after export (EEG),,
-Criteria for exclusion of data trials/single joints (EEG),"What part of the data is deleted (raw data, processed data)?",
-,,
-"*Processing of marker data (if applicable, otherwise enter na)*",,
-Labelling,Marker names including anatomical reference point,"See also ""Metadata_collect"""
-Pipelines (marker data),"Name of the pipelines that were used including chosen settings: Subject calibration: describe the used calibration method, Gap filling: name (e.g. Rigid Body, Woltring) and max. gap length),  Filter: name, cut-off frequency, order, type, Data processing: if e.g. Plug-in-Gait is used, describe the pipeline and properties",Describe all the relevant pre-processing steps that are needed to reproduce data processing
-Events,"Criteria for placement of events, e.g. automatic detection (force threshold/used markers) or manual setting (used markers)",
-Calculation method,"Reference to the calculation method for kinematics, kinetics","Examples of calculation methods are Newton-Euler, Lagrange and Inverse Dynamics or Forward Dynamics"
-Naming convention (marker data),Name of the files for export and their meaning. List of abbreviations,If data is exported
-File type after export (marker data),,
-Criteria for the exclusion of trials/single joints (marker data),"What part of the data is deleted (raw data, processed data)?",
-Normalization (marker data),Time normalization yes/no. For spatiotemporal parameters leg length normalization yes/no,"If yes, define criteria"
-Analyzed outcomes angles,"Mean value + SD, Maximal value, Range (min & max), …",Include a reference to the chosen calculation methods for kinematic outcomes in the metadata.
-Analyzed spatiotemporal outcomes,"Mean value + SD, Absolute value (e.g. for step time) or percentage (e.g. for foot off)",Include a reference to the chosen calculation methods in the metadata.
-,,
-"*Processing of kinetics (if applicable, otherwise enter na)*",,
-Naming convention (kinetics),Name of the files for export and their meaning. List of abbreviations,
-Pipelines (kinetics),"Name of the pipelines used, including the chosen settings: Filtering: name of filter, cut-off frequency, order, type. Model used to calculate moments (e.g. Plug-in Gait, BodyBuilder, …)",Describe if filtered force/ marker data are used for model calculation
-File type after export (kinetics),,
-Criteria for exclusion of forces/moments,"What part of the data is deleted (raw data, processed data)",
-Normalization (kinetics),Is kinetic data normalized to body weight (e.g. % bodyweight or kg-1) yes/no,Also describe if other normalization methods were used
-Analyzed outcomes moments,"Mean value + SD, Maximal value, Range (min & max), etc.",Include a reference to the chosen calculation methods in the metadata.
-Analyzed outcomes forces,"Mean value + SD, Maximal value, Range (min & max), ....",Include a reference to the chosen calculation methods in the metadata.
-,,
-"*Processing of IMU data (if applicable, otherwise enter na)*",,
-Naming convention (IMU),Name of the files for export and their meaning. List of abbreviations,
-Filter (IMU),"Name of filter, Cut-off frequency, Order, Type",
-File type after export (IMU),,
-Normalization (IMU),Time or other normalization procedure – please specify,
-Analyzed outcomes (IMU),"Angles, Velocity/acceleration, Magnetometer, Gyroscope",
-"Criteria for exclusion of trials (angles, forces, moments, etc.)","What part of the data is deleted (raw data, processed data)?",
-,,
-"*Processing of plantar pressure (if applicable, otherwise enter na)*",,
-Processing steps,Masking. Definition of the region of interest and the analyzed segments,Please add the information that is relevant to your measurement device and methods chosen.
-Criteria for exclusion of trials,,
-Analyzed outcomes (plantar pressure),"Peak pressure, Mean pressure, Location of peak pressure",
-,,
-"*Processing of imaging data (if applicable, otherwise enter na)*",,
-Applied algorithms for image processing,,
-Criteria for exclusion of images,,
-Analyzed outcomes (imaging data),How was the grading performed? Which parameters were calculated and which approach was used (e.g. ossification ratio in ultrasound)? etc.,
-,,
-"*Processing of 2D video data (if applicable, otherwise enter na)*",,
-"Calculation method for joint angles (if applicable, otherwise enter na)","If segment lines were drawn to calculate joint angles, please specify which reference points were used",
-,,
-*Data processing - Comments*,,
-Data processing: additional comment(s),,
+﻿##Data processing;;
+Title;Content/Format;Comment
+;;
+*General information*;;
+Date(s) of data processing (one value per participant);[YYYY-MM-DD];According to ISO 8601
+Software(s) used for data processing;;Please describe the type of data which were collected in the following form: sensor type and outcome of primary interest. Examples: Marker-based kinematics, Sensor-based kinematics, Video-based (markerless) kinematics, Surface EMG, Force plate kinetics, Spatiotemporal parameters, EEG, Medical imaging, Plantar pressure, 2D video
+Sampling rate;[Hz];If re-sampled after collection, otherwise enter 'na' if the sampling rate has not been changed
+Quality check (if applicable, otherwise enter na);Describe how data quality was assessed e.g. visually by the four-eye-principle. Automatic outlier detection and removal, ...;For a manual, visual quality check please indicate the criteria used. For automatic outlier detection, describe the calculation method/algorithm used.
+;;
+*Processing of EMG (if applicable, otherwise enter na);;
+Filter (EMG);Type of filter (Butterworth, Chebyshev, etc.), Low/high pass cut-off frequencies [Hz], Slopes of the cut-offs (if applicable, otherwise enter na);According to standards for reporting EMG data (https://isek.org/emg-standards/)
+Rectification (EMG);Yes/No (full or half-wave);
+EMG amplitude processing;No processing, RMS, ARV, MAV, IEMG;RMS = root mean square, ARV = average rectified value, MAV = mean absolute value, IEMG = integrated EMG (area under the curve)
+Normalization (EMG);MVC for EMG (including how subjects were trained, etc.), RVC, Amplitude normalization (to mean value or peak value), Time normalization, No normalization;According to standards for reporting EMG data (https://isek.org/emg-standards/)
+Exclusion of trials/muscles;Criteria for exclusion of trials/muscles -> e.g. artefacts (how are they defined as artefacts), missing signal. What part of the data is deleted (raw data, processed data);
+Analyzed outcomes (EMG);Each mean, maximal or minimal value over trial (please report which variable you used and during which phase of the movement it was extracted): RMS of amplitude, ARV of amplitude, Rectified full wave EMG signal, Envelope, On/off detection e.g. on/off time, Area under the curve slope, …;RMS = root mean square, ARV = average rectified value, Also include a reference to the chosen calculation methods for EM
+;;
+*Processing of EEG (if applicable, otherwise enter na);;
+Filter (EEG);Type of filter (basic FIR filter, FFT linear filter, short infinite impulse response, notch filtering, etc.), Low/high pass cut-off frequency;
+Re-referencing;Specify reference electrode, State if data was re-referenced to a specific electrode or if average reference was computed;
+Resampling;Specify if and how you re-sampled data. If not re-sampled, state na;
+Artifact removal (EEG);Specify which channels were rejected and whether automatically or manually (if applicable, otherwise enter na). Specify if an individual component analysis was performed and which algorithm was used;
+Data epoch extraction;List which event type and epoch limit was used to extract data epochs. Baseline removal latency range [ms];
+Head model;Which head model was used;
+File type after export (EEG);;
+Criteria for exclusion of data trials/single joints (EEG);What part of the data is deleted (raw data, processed data)?;
+;;
+*Processing of marker data (if applicable, otherwise enter na)*;;
+Labelling;Marker names including anatomical reference point;See also 'Metadata_collect'
+Pipelines (marker data);Name of the pipelines that were used including chosen settings: Subject calibration: describe the used calibration method, Gap filling: name (e.g. Rigid Body, Woltring) and max. gap length),  Filter: name, cut-off frequency, order, type, Data processing: if e.g. Plug-in-Gait is used, describe the pipeline and properties;Describe all the relevant pre-processing steps that are needed to reproduce data processing
+Events;Criteria for placement of events, e.g. automatic detection (force threshold/used markers) or manual setting (used markers);
+Calculation method;Reference to the calculation method for kinematics, kinetics;Examples of calculation methods are Newton-Euler, Lagrange and Inverse Dynamics or Forward Dynamics
+Naming convention (marker data);Name of the files for export and their meaning. List of abbreviations;If data is exported
+File type after export (marker data);;
+Criteria for the exclusion of trials/single joints (marker data);What part of the data is deleted (raw data, processed data)?;
+Normalization (marker data);Time normalization yes/no. For spatiotemporal parameters leg length normalization yes/no;If yes, define criteria
+Analyzed outcomes angles;Mean value + SD, Maximal value, Range (min & max), …;Include a reference to the chosen calculation methods for kinematic outcomes in the metadata.
+Analyzed spatiotemporal outcomes;Mean value + SD, Absolute value (e.g. for step time) or percentage (e.g. for foot off);Include a reference to the chosen calculation methods in the metadata.
+;;
+*Processing of kinetics (if applicable, otherwise enter na)*;;
+Naming convention (kinetics);Name of the files for export and their meaning. List of abbreviations;
+Pipelines (kinetics);Name of the pipelines used, including the chosen settings: Filtering: name of filter, cut-off frequency, order, type. Model used to calculate moments (e.g. Plug-in Gait, BodyBuilder, …);Describe if filtered force/ marker data are used for model calculation
+File type after export (kinetics);;
+Criteria for exclusion of forces/moments;What part of the data is deleted (raw data, processed data);
+Normalization (kinetics);Is kinetic data normalized to body weight (e.g. % bodyweight or kg-1) yes/no;Also describe if other normalization methods were used
+Analyzed outcomes moments;Mean value + SD, Maximal value, Range (min & max), etc.;Include a reference to the chosen calculation methods in the metadata.
+Analyzed outcomes forces;Mean value + SD, Maximal value, Range (min & max), ....;Include a reference to the chosen calculation methods in the metadata.
+;;
+*Processing of IMU data (if applicable, otherwise enter na)*;;
+Naming convention (IMU);Name of the files for export and their meaning. List of abbreviations;
+Filter (IMU);Name of filter, Cut-off frequency, Order, Type;
+File type after export (IMU);;
+Normalization (IMU);Time or other normalization procedure – please specify;
+Analyzed outcomes (IMU);Angles, Velocity/acceleration, Magnetometer, Gyroscope;
+Criteria for exclusion of trials (angles, forces, moments, etc.);What part of the data is deleted (raw data, processed data)?;
+;;
+*Processing of plantar pressure (if applicable, otherwise enter na)*;,
+Processing steps;Masking. Definition of the region of interest and the analyzed segments;Please add the information that is relevant to your measurement device and methods chosen.
+Criteria for exclusion of trials;;
+Analyzed outcomes (plantar pressure);Peak pressure, Mean pressure, Location of peak pressure;
+;;
+*Processing of imaging data (if applicable, otherwise enter na)*;;
+Applied algorithms for image processing;;
+Criteria for exclusion of images;;
+Analyzed outcomes (imaging data);How was the grading performed? Which parameters were calculated and which approach was used (e.g. ossification ratio in ultrasound)? etc.;
+;;
+*Processing of 2D video data (if applicable, otherwise enter na)*;;
+Calculation method for joint angles (if applicable, otherwise enter na);If segment lines were drawn to calculate joint angles, please specify which reference points were used;
+;;
+*Data processing - Comments*;;
+Data processing: additional comment(s);;
