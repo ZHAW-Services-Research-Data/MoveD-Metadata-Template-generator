@@ -6,6 +6,7 @@ import os
 import tkinter
 import tkinter.simpledialog
 import csv
+import sys
 
 # Define the constants
 popup = True
@@ -30,7 +31,7 @@ software_analysis = ["Name", "Manufacturer", "Version (software and used package
 stats_analyses = ["Statistical model", "Number of analyzed parameters", "Type of parameter (dependent)", "Type of parameter (independent)"]
 tasks = ["Naming convention (abbreviation) of task e.g. Squat (sq)", "Description of task (If walking or running was performed: indicate gait speed)"]
 sensors = ["Abbreviation e.g. L/RTHI", "Segment name e.g. Thigh", "Explanation marker/sensor placement e.g. half way down the lateral thigh"]
-
+  
 all_variables_collect_participant = {
     "Part 1.1: Data Collection - participant specific information" : "Message",
     "Identification number" : "not",
@@ -237,34 +238,34 @@ def save_data(data_processed, extra, popup=False):
         print("Data saving")
 
     # Write the output to a new file, with the user specifying the name
+    continue_save = True
     while True:
-        if popup:
-            ROOT = tkinter.Tk()
-            ROOT.withdraw()
-            name_output_file = "Output/" + (
-                tkinter.simpledialog.askstring(
-                    "User input", "Enter the output file name (without extension): "
-                )
-                + extra + ".csv"
-            )
-        else:
-            name_output_file = (
-                "Output/"
-                + input("Enter the output file name (without extension): ")
-                + extra + ".csv"
-            )
-        if os.path.isfile(name_output_file):
+        output_text = "Enter the output file name (without extension): "
+        if output_text is None:
+            continue_save = False
+            #Inform the user that the saving has been cancelled
             if popup:
-                validate_file = tkinter.simpledialog.askstring("User input", "File already exists, do you wish to overwrite it? (y/n): ").lower().strip()
+                tkinter.messagebox.showwarning("User input", "The saving of the data has been cancelled by the user.")
             else:
-                validate_file = input("File already exists, do you wish to overwrite it? (y/n): ").lower().strip()
-            if validate_file == "y" or validate_file == "yes":
-                break
-        else:
+                print("The saving of the data has been cancelled by the user.")
             break
-    data_processed.to_csv(
-        sep=";", header=False, index=False, path_or_buf=name_output_file, na_rep="",quoting=csv.QUOTE_NONE, quotechar=None, escapechar="\\"
-    )
+
+        else:
+            name_output_file = "Output/" + output_text + extra + ".csv"
+            if os.path.isfile(name_output_file):
+                if popup:
+                    validate_file = tkinter.simpledialog.askstring("User input", "File already exists, do you wish to overwrite it? (y/n): ").lower().strip()
+                else:
+                    validate_file = input("File already exists, do you wish to overwrite it? (y/n): ").lower().strip()
+                if validate_file == "y" or validate_file == "yes":
+                    break
+            else:
+                break
+            
+    if continue_save:
+        data_processed.to_csv(
+            sep=";", header=False, index=False, path_or_buf=name_output_file, na_rep="",quoting=csv.QUOTE_NONE, quotechar=None, escapechar="\\"
+        )
 
 # 2. Create a main function to read in data, process, and write the output to a file
 def main():
@@ -277,22 +278,28 @@ def main():
         print("Please enter the data into the prompts. If you do not have the data, or if it is not applicable, please enter 'na'. Note that if you press 'cancel' at any point, the program will stop and output may not be saved.")
 
     # First ask the user which part of the metadata will be filled out: all, collect, process, analyze, or share
-    if popup:
-        ROOT = tkinter.Tk()
-        ROOT.withdraw()
-        part_metadata = tkinter.simpledialog.askstring("User input", "Which part of the metadata will be filled out (all, collect (participant data), collect (general data), process, analyze, share)?").lower().strip()
+    part_metadata = trycatch_null("Which part of the metadata will be filled out (all, collect (participant data), collect (general data), process, analyze, share)?", popup)
+    if part_metadata is None:
+        if popup:
+            tkinter.messagebox.showwarning("User input", "Input cancelled by user, program will be terminated.")
+        else:
+            print("Input cancelled by user, program will be terminated.")
+        sys.exit()
     else:
-        part_metadata = input("Which part of the metadata will be filled out (all, collect (participant data), collect (general data), process, analyze, share?").lower().strip()
+        part_metadata = part_metadata.lower().strip()
 
     # Check if the user input is valid
     while part_metadata not in ["all", "collect (participant data)", "collect (general data)", "process", "analyze", "share"]:
-        if popup:
-            ROOT = tkinter.Tk()
-            ROOT.withdraw()
-            part_metadata = tkinter.simpledialog.askstring("User input", "Please enter a valid option (all, collect (participant data), collect (general data), process, analyze, share): ").lower().strip()
+        part_metadata = trycatch_null("Which part of the metadata will be filled out (all, collect (participant data), collect (general data), process, analyze, share)?", popup)
+        if part_metadata is None:
+            if popup:
+                tkinter.messagebox.showwarning("User input", "Input cancelled by user, program will be terminated.")
+            else:
+                print("Input cancelled by user, program will be terminated.")
+            sys.exit()
         else:
-            part_metadata = input("Please enter a valid option (all, collect (participant data), collect (general data), process, analyze, share): ").lower().strip()
-    
+            part_metadata = part_metadata.lower().strip()
+
     # Create the output folder, if it does not exists
     if not os.path.isdir("Output"):
         os.makedirs("Output")
@@ -364,6 +371,7 @@ def query_software_hardware(variable, i, popup=False):
         output_str = "Software " + str(i+1) + ": "
 
     #Ask the user to input the variables for the software/hardware and add them to the strin, separated by a comma
+    continue_process = True
     for var in variable_list:
         if output_str.startswith("Software"):
             message = "Enter the " + var + " for software " + str(i+1) + ": "
@@ -375,12 +383,10 @@ def query_software_hardware(variable, i, popup=False):
             message = "Enter the " + var + " for sensor/marker " + str(i+1) + ": "
         else:
             message = "Enter the " + var + " for hardware " + str(i+1) + ": "
-        if popup:
-            ROOT = tkinter.Tk()
-            ROOT.withdraw()
-            value_entered = tkinter.simpledialog.askstring("User input", message)
-        else:
-            value_entered = input(message)
+        value_entered = trycatch_null(message, popup)
+        if value_entered is None:
+            continue_process = False
+            break
         output_str = output_str + "[" + var + "] " + value_entered + " - "
     
     #Remove the last dash from the string
@@ -424,35 +430,29 @@ def query_user(variable, dataframe, reference_dict, popup=False, extra = ""):
     # First check those versions where numeric values need to be checked
     if variable in numeric_entries:
         while True:
-            if popup:
-                ROOT = tkinter.Tk()
-                ROOT.withdraw()
-                value_entered = tkinter.simpledialog.askstring("User input", base_message)
+            value_entered = trycatch_null(base_message, popup)
+            if value_entered is None:
+                return None
             else:
-                value_entered = input(base_message)
-            try:
-                if value_entered == "na":
-                    break
-                else:
-                    value_entered = str(float(value_entered))
-                    break
-            except ValueError:
-                if popup:
-                    tkinter.messagebox.showwarning("User input", "Please enter a numeric value for " + variable)
-                else:
-                    print("Please enter a numeric value for " + variable)
+                try:
+                    if value_entered == "na":
+                        break
+                    else:
+                        value_entered = str(float(value_entered))
+                        break
+                except ValueError:
+                    if popup:
+                        tkinter.messagebox.showwarning("User input", "Please enter a numeric value for " + variable)
+                    else:
+                        print("Please enter a numeric value for " + variable)
 
     else:
-        if popup:
-            ROOT = tkinter.Tk()
-            ROOT.withdraw()
-            value_entered = tkinter.simpledialog.askstring("User input", base_message)
-        else:
-            value_entered = input(base_message)
+        value_entered = trycatch_null(base_message, popup)
 
     # Check if the variable needs to be rounded, and do so
-    if variable in rounding_entries and value_entered != "na":
-        value_entered = round_to_n(value_entered, reference_dict, variable, n=2)
+    if not value_entered is None:
+        if variable in rounding_entries and value_entered != "na":
+            value_entered = round_to_n(value_entered, reference_dict, variable, n=2)
 
     # Finally, return the output
     return value_entered
@@ -477,6 +477,9 @@ def round_to_n(value, reference_dict, variable, n=2):
 
 # 5. Query the user for the inputs needed to create the output dataframe
 def create_df(dataframe, popup, part, all_variables_process_use):
+    #Create a variable to check if the process needs to be continued or not
+    continue_process = True
+
     #Check which part of the metadata is being filled out
     if part == "collect (participant data)":
         all_variables_named = all_variables_collect_participant
@@ -498,16 +501,25 @@ def create_df(dataframe, popup, part, all_variables_process_use):
         #Check if imaging is in the df for analyze --> softwares
         if var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)":
             #Ask the user if imaging data has been collected
-            if popup:
-                imaging_collected = tkinter.simpledialog.askstring("User input", "Has imaging data been analyzed? (yes/no)").lower().strip()
+            imaging_collected = trycatch_null("Was imaging data analyzed? Enter 'yes' or 'no': ", popup)
+            if imaging_collected is None:
+                continue_process = False
+                break
             else:
-                imaging_collected = input("Has imaging data been collected? (yes/no)").lower().strip()
+                imaging_collected = imaging_collected.lower().strip()
+
             #Check if the user input is valid
             while imaging_collected != "yes" and imaging_collected != "no":
-                if popup:
-                    imaging_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+                imaging_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+                if imaging_collected is None:
+                    continue_process = False
+                    break
                 else:
-                    imaging_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+                    imaging_collected = imaging_collected.lower().strip()
+            
+            #Check if the process needs to be continued
+            if not continue_process:
+                break
             if imaging_collected == "yes":
                 imaging_TF = True
         
@@ -520,9 +532,14 @@ def create_df(dataframe, popup, part, all_variables_process_use):
         
         #Cases where the variable is not repeated
         elif all_variables_named[var_name] == "not" or all_variables_named[var_name] == "optional":
-            dataframe.loc[dataframe[0] == var_name, 3] = query_user(
-            var_name, dataframe, all_variables_named, popup
-        )
+            output_text = query_user(
+                var_name, dataframe, all_variables_named, popup
+                )
+            if not output_text is None:
+                dataframe.loc[dataframe[0] == var_name, 3] = output_text
+            else:
+                continue_process = False
+                break
         
         #Cases where a software is added
         elif all_variables_named[var_name] in ["software_collection", "hardware_collection", "software_processing", "software_analysis", "stats", "tasks", "sensor"]:
@@ -539,12 +556,10 @@ def create_df(dataframe, popup, part, all_variables_process_use):
                     message_word = "software"
                 #Check how many softwares need to be added
                 while True:
-                    if popup:
-                        ROOT = tkinter.Tk()
-                        ROOT.withdraw()
-                        number_soft = tkinter.simpledialog.askstring("User input", var_name + ": How many " + message_word + "(s) do you wish to record?")
-                    else:
-                        number_soft = input(var_name + ": How many " + message_word + "(s) do you wish to record?")
+                    number_soft = trycatch_null("How many " + message_word + "(s) do you wish to record? ", popup)
+                    if number_soft is None:
+                        continue_process = False
+                        break
                     try:
                         number_soft = int(number_soft)
                         break
@@ -553,24 +568,34 @@ def create_df(dataframe, popup, part, all_variables_process_use):
                             tkinter.messagebox.showwarning("User input", "Please enter an integer value (>=0).")
                         else:
                             print("Please enter an integer value (>=0).")
+                if not continue_process:
+                    break
                         
                 #Loop over the number of softwares, and add to the dataframe
+                continue_process = True
                 for i in range(number_soft):
+                    output_text = query_software_hardware(var_name, i, popup)
+                    if output_text is None:
+                        continue_process = False
+                        break
                     if i == 0:
-                        dataframe.loc[dataframe[0] == var_name, 3] = query_software_hardware(var_name, i, popup)
+                        dataframe.loc[dataframe[0] == var_name, 3] = output_text
                     else:
-                        dataframe.loc[dataframe[0] == var_name, 3] = dataframe.loc[dataframe[0] == var_name, 3] + "\n;;;" + query_software_hardware(var_name, i, popup)
-        
+                        dataframe.loc[dataframe[0] == var_name, 3] = dataframe.loc[dataframe[0] == var_name, 3] + "\n;;;" + output_text
+
+                if not continue_process:
+                    break
+
         #Cases that are repeated but are not software/hardware
         elif all_variables_named[var_name] != "Message":
+            continue_process = True
             #Check how many values need to be added
             while True:
-                if popup:
-                    ROOT = tkinter.Tk()
-                    ROOT.withdraw()
-                    number_inc = tkinter.simpledialog.askstring("User input", "How many " + var_name + " do you wish to record?")
-                else:
-                    number_inc = input("How many software(s) do you wish to record?")
+                number_inc = trycatch_null("How many " + var_name + "(s) do you wish to record? ", popup)
+
+                if number_inc is None:
+                    continue_process = False
+                    break
                 try:
                     number_inc = int(number_inc)
                     break
@@ -579,126 +604,167 @@ def create_df(dataframe, popup, part, all_variables_process_use):
                         tkinter.messagebox.showwarning("User input", "Please enter an integer value (>=0)")
                     else:
                         print("Please enter an integer value (>=0)")
+            
+            if not continue_process:
+                break
 
             #Loop over the number of values, and add to the dataframe
+            continue_process = True
             for i in range(number_inc):
-                if i == 0:
-                    dataframe.loc[dataframe[0] == var_name, 3] = query_user(
+                output_text =  query_user(
                         var_name, dataframe, all_variables_named, popup, extra=var_name + " " + str(i+1) + ": "
                     )
-                else:
-                    dataframe.loc[dataframe[0] == var_name, 3] = dataframe.loc[dataframe[0] == var_name, 3] + "\n;;;" + query_user(
-                        var_name, dataframe, all_variables_named, popup, extra=var_name + " " + str(i+1) + ": "
-                    )
+                if output_text is None:
+                    continue_process = False
+                    break
 
+                if i == 0:
+                    dataframe.loc[dataframe[0] == var_name, 3] = output_text
+                else:
+                    dataframe.loc[dataframe[0] == var_name, 3] = dataframe.loc[dataframe[0] == var_name, 3] + "\n;;;" + output_text
+
+            if not continue_process:
+                break
+
+    #In case the output got terminated, provide an information comment
+    if not continue_process:
+        if popup:
+            tkinter.messagebox.showwarning("User input", "The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved.")
+        else:
+            print("The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved.")
 
     # Return the dataframe
     return dataframe
 
 # Create a function to check which types of optional data have been processed, and filter the reference data accordingly ####
 def check_optional_data(all_variables_process, all_variables_process_type, popup):
+    continue_process = True
     # Ask the user if EMG data has been collected
-    if popup:
-        emg_collected = tkinter.simpledialog.askstring("User input", "Has EMG data been collected? (yes/no)").lower().strip()
+    emg_collected = trycatch_null("Has EMG data been collected? (yes/no): ", popup)
+    if emg_collected is None:
+        continue_process = False
     else:
-        emg_collected = input("Has EMG data been collected? (yes/no)").lower().strip()
+        emg_collected = emg_collected.lower().strip()
     # Check if the user input is valid
     while emg_collected != "yes" and emg_collected != "no":
-        if popup:
-            emg_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+        emg_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if emg_collected is None:
+            continue_process = False
+            break
         else:
-            emg_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            emg_collected = emg_collected.lower().strip()
 
     # Do the same for the EEG data
-    if popup:
-        eeg_collected = tkinter.simpledialog.askstring("User input", "Has EEG data been collected? (yes/no)").lower().strip()
+    eeg_collected = trycatch_null("Has EEG data been collected? (yes/no): ", popup)
+    if eeg_collected is None:
+        continue_process = False
     else:
-        eeg_collected = input("Has EEG data been collected? (yes/no)").lower().strip()
+        eeg_collected = eeg_collected.lower().strip()
     # Check if the user input is valid
     while eeg_collected != "yes" and eeg_collected != "no":
-        if popup:
-            eeg_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+        eeg_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if eeg_collected is None:
+            continue_process = False
+            break
         else:
-            eeg_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            eeg_collected = eeg_collected.lower().strip()
 
     # Then do the same for the marker data
-    if popup:
-        markers_collected = tkinter.simpledialog.askstring("User input", "Have marker data been collected? (yes/no)").lower().strip()
+    marker_collected = trycatch_null("Has marker data been collected? (yes/no): ", popup)
+    if marker_collected is None:
+        continue_process = False
     else:
-        markers_collected = input("Have marker data been collected? (yes/no)").lower().strip()
+        marker_collected = marker_collected.lower().strip()
     # Check if the user input is valid
-    while markers_collected != "yes" and markers_collected != "no":
-        if popup:
-            markers_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+    while marker_collected != "yes" and marker_collected != "no":
+        marker_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if marker_collected is None:
+            continue_process = False
+            break
         else:
-            markers_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            marker_collected = marker_collected.lower().strip()
 
     # Then do the same for the kinetics data
-    if popup:
-        kinetics_collected = tkinter.simpledialog.askstring("User input", "Have kinetics data been collected? (yes/no)").lower().strip()
+    kinetics_collected = trycatch_null("Has kinetics data been collected? (yes/no): ", popup)
+    if kinetics_collected is None:
+        continue_process = False
     else:
-        kinetics_collected = input("Have kinetics data been collected? (yes/no)").lower().strip()
+        kinetics_collected = kinetics_collected.lower().strip()
     # Check if the user input is valid
     while kinetics_collected != "yes" and kinetics_collected != "no":
-        if popup:
-            kinetics_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+        kinetics_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if kinetics_collected is None:
+            continue_process = False
+            break
         else:
-            kinetics_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            kinetics_collected = kinetics_collected.lower().strip()
 
     # Then do the same for the IMU data
-    if popup:
-        imu_collected = tkinter.simpledialog.askstring("User input", "Have IMU data been collected? (yes/no)").lower().strip()
+    imu_collected = trycatch_null("Has IMU data been collected? (yes/no): ", popup)
+    if imu_collected is None:
+        continue_process = False
     else:
-        imu_collected = input("Have IMU data been collected? (yes/no)").lower().strip()
+        imu_collected = imu_collected.lower().strip()
     # Check if the user input is valid
     while imu_collected != "yes" and imu_collected != "no":
-        if popup:
-            imu_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+        imu_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if imu_collected is None:
+            continue_process = False
+            break
         else:
-            imu_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            imu_collected = imu_collected.lower().strip()
 
     # Then do the same for plantar pressure data
-    if popup:
-        pressure_collected = tkinter.simpledialog.askstring("User input", "Has plantar pressure data been collected? (yes/no)").lower().strip()
+    pressure_collected = trycatch_null("Has plantar pressure data been collected? (yes/no): ", popup)
+    if pressure_collected is None:
+        continue_process = False
     else:
-        pressure_collected = input("Has plantar pressure data been collected? (yes/no)").lower().strip()
+        pressure_collected = pressure_collected.lower().strip()
     # Check if the user input is valid
     while pressure_collected != "yes" and pressure_collected != "no":
-        if popup:
-            pressure_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+        pressure_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if pressure_collected is None:
+            continue_process = False
+            break
         else:
-            pressure_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            pressure_collected = pressure_collected.lower().strip()
 
     # Then do the same for imaging data
-    if popup:
-        imaging_collected = tkinter.simpledialog.askstring("User input", "Has imaging data been collected? (yes/no)").lower().strip()
+    imaging_collected = trycatch_null("Has imaging data been collected? (yes/no): ", popup)
+    if imaging_collected is None:
+        continue_process = False
     else:
-        imaging_collected = input("Has imaging data been collected? (yes/no)").lower().strip()
+        imaging_collected = imaging_collected.lower().strip()
     # Check if the user input is valid
     while imaging_collected != "yes" and imaging_collected != "no":
-        if popup:
-            imaging_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+        imaging_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if imaging_collected is None:
+            continue_process = False
+            break
         else:
-            imaging_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            imaging_collected = imaging_collected.lower().strip()
 
     # Then do the same for 2D video data
-    if popup:
-        video2d_collected = tkinter.simpledialog.askstring("User input", "Has 2D video data been collected? (yes/no)").lower().strip()
+    video2d_collected = trycatch_null("Has 2D video data been collected? (yes/no): ", popup)
+    if video2d_collected is None:
+        continue_process = False
     else:
-        video2d_collected = input("Has 2D video data been collected? (yes/no)").lower().strip()
+        video2d_collected = video2d_collected.lower().strip()
     # Check if the user input is valid
     while video2d_collected != "yes" and video2d_collected != "no":
-        if popup:
-            video2d_collected = tkinter.simpledialog.askstring("User input", "Please enter a valid option (yes/no): ").lower().strip()
+        video2d_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+        if video2d_collected is None:
+            continue_process = False
+            break
         else:
-            video2d_collected = input("Please enter a valid option (yes/no): ").lower().strip()
+            video2d_collected = video2d_collected.lower().strip()
 
     #Finally, filter the "all_variables_process" list based on the user input
     if emg_collected == "no":
         all_variables_process_type = {k: v for k, v in all_variables_process_type.items() if v != "EMG"}
     if eeg_collected == "no":
         all_variables_process_type = {k: v for k, v in all_variables_process_type.items() if v != "EEG"}
-    if markers_collected == "no":
+    if marker_collected == "no":
         all_variables_process_type = {k: v for k, v in all_variables_process_type.items() if v != "marker"}
     if kinetics_collected == "no":
         all_variables_process_type = {k: v for k, v in all_variables_process_type.items() if v != "kinetics"}
@@ -714,7 +780,35 @@ def check_optional_data(all_variables_process, all_variables_process_type, popup
     all_variables_process = {k: v for k, v in all_variables_process.items() if k in all_variables_process_type.keys()}
 
     #Return the filtered dict
-    return all_variables_process
+    if continue_process:
+        return all_variables_process
+    else:
+        return None
+
+#Create a function that does a try-catch when entering data, to catch a "cancel" or interrupted input
+def trycatch_null(display_text, popup=True):
+
+    if popup:
+        #Get the input from the user
+        ROOT = tkinter.Tk()
+        ROOT.withdraw()
+        value_entered = tkinter.simpledialog.askstring("User input", display_text)
+
+        # if the user cancelled, return a None type (NULL) object
+        if value_entered is None:
+            return None
+        else:
+            return value_entered
+    else:
+        value_entered = input(display_text)
+
+        # if the user cancelled, return a None type (NULL) object
+        if value_entered is None:
+            return None
+        else:
+            return value_entered
+
+    
 
 if __name__ == "__main__":
     main()

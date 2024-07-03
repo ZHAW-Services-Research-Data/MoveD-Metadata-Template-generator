@@ -34,7 +34,8 @@
                       "Dynamic range of measurement device",
                       "Penetration depth",
                       "Image resolution",
-                      "Sampling rate")
+                      "Sampling rate"
+                      )
   
   #Variables that need to be rounded to 2 decimals
   rounding_entries = numeric_entries
@@ -373,7 +374,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
           } else{
           print("Please enter 'yes' or 'no'")
           }
-        imaging_yn = trycatch_null(toString("Was imaging data analyzed? Enter 'yes' or 'no'"), popup)
+        imaging_yn = trycatch_null(toString("Please enter a valid option (yes/no): "), popup)
         if (is.null(imaging_yn)){
           continue_process = FALSE
           break
@@ -428,7 +429,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       if (var_name != "Statistical analysis (if performed)" | (var_name == "Statistical analysis (if performed)" & imaging_TF)){
         cont_query=TRUE
         while(cont_query){
-          number_soft = trycatch_null(toString(paste0(toString(var_name), ": How many ", toString(message_word), " do you wish to record?")), popup)
+          number_soft = trycatch_null(toString(paste0(toString(var_name), ": How many ", toString(message_word), "(s) do you wish to record?")), popup)
           if (is.null(number_soft)){
             continue_process = FALSE
             break
@@ -483,7 +484,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       cont_query=TRUE
       continue_process = TRUE
       while(cont_query){
-        number_inc = trycatch_null(toString(paste0("How many ", toString(var_name), " do you wish to record?")), popup)
+        number_inc = trycatch_null(toString(paste0("How many ", toString(var_name), "(s) do you wish to record?")), popup)
         if (is.null(number_inc)){
           continue_process = FALSE
           break
@@ -531,9 +532,9 @@ create_df <- function(dataframe, popup, part, all_variables_process){
   #In case the output got terminated, provide an information comment
   if (continue_process == FALSE){
     if (popup){
-      dlgMessage(paste0("The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved"), type="ok", Sys.info()["user"], rstudio=T)
+      dlgMessage(paste0("The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved."), type="ok", Sys.info()["user"], rstudio=T)
     } else{
-      print(paste0("The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved"))
+      print(paste0("The text-input was cancelled by the user. The input process will therefore be terminated, and input entered so far saved."))
     }
   }
   
@@ -659,7 +660,7 @@ main <- function(){
   
   # First ask the user which part of the metadata will be filled out: all, collect, process, analyze, or share
   part_metadata = trycatch_null("Which part of the metadata will be filled out? (all, collect (participant data), collect (general data), process, analyze, share)", popup)
-  if (part_metadata == FALSE){
+  if (is.null(part_metadata)){
     if (popup){
       dlgMessage("Input cancelled by user, program will be terminated", type="ok", Sys.info()["user"], rstudio=T)
     } else {
