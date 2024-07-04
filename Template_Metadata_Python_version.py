@@ -240,7 +240,7 @@ def save_data(data_processed, extra, popup=False):
     # Write the output to a new file, with the user specifying the name
     continue_save = True
     while True:
-        output_text = "Enter the output file name (without extension): "
+        output_text = trycatch_null("Enter the output file name (without extension): ", popup)
         if output_text is None:
             continue_save = False
             #Inform the user that the saving has been cancelled
@@ -338,7 +338,7 @@ def main():
         data_process_processed = create_df(data_process, popup, part="process", all_variables_process_use=all_variables_process_use)
         save_data(data_process_processed, "_process", popup)
         data_analyze = pandas.read_csv("Input/Metadata_Template_Analyze.csv", sep=";", header=None)
-        data_analyze_processed = create_df(data_analyze, popup, part="analzye", all_variables_process_use={})
+        data_analyze_processed = create_df(data_analyze, popup, part="analyze", all_variables_process_use={})
         save_data(data_analyze_processed, "_analyze", popup)
         data_share = pandas.read_csv("Input/Metadata_Template_Share.csv", sep=";", header=None)
         data_share_processed = create_df(data_share, popup, part="share", all_variables_process_use={})
@@ -495,89 +495,132 @@ def create_df(dataframe, popup, part, all_variables_process_use):
     #Make a variable to check if the imaging data needs to be entered in analyze
     imaging_TF = False
 
-    #Loop over the variables and query the user for the input
-    for var_name in all_variables_named.keys():
+    if all_variables_named is None:
+        continue_process = False
+    else:
+        #Loop over the variables and query the user for the input
+        for var_name in all_variables_named.keys():
 
-        #Check if imaging is in the df for analyze --> softwares
-        if var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)":
-            #Ask the user if imaging data has been collected
-            imaging_collected = trycatch_null("Was imaging data analyzed? Enter 'yes' or 'no': ", popup)
-            if imaging_collected is None:
-                continue_process = False
-                break
-            else:
-                imaging_collected = imaging_collected.lower().strip()
-
-            #Check if the user input is valid
-            while imaging_collected != "yes" and imaging_collected != "no":
-                imaging_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+            #Check if imaging is in the df for analyze --> softwares
+            if var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)":
+                #Ask the user if imaging data has been collected
+                imaging_collected = trycatch_null("Was imaging data analyzed? Enter 'yes' or 'no': ", popup)
                 if imaging_collected is None:
                     continue_process = False
                     break
                 else:
                     imaging_collected = imaging_collected.lower().strip()
+
+                #Check if the user input is valid
+                while imaging_collected != "yes" and imaging_collected != "no":
+                    imaging_collected = trycatch_null("Please enter a valid option (yes/no): ", popup)
+                    if imaging_collected is None:
+                        continue_process = False
+                        break
+                    else:
+                        imaging_collected = imaging_collected.lower().strip()
+                
+                #Check if the process needs to be continued
+                if not continue_process:
+                    break
+                if imaging_collected == "yes":
+                    imaging_TF = True
             
-            #Check if the process needs to be continued
-            if not continue_process:
-                break
-            if imaging_collected == "yes":
-                imaging_TF = True
-        
-        #Create a message if it's just a message variable
-        if (all_variables_named[var_name] == "Message" and var_name != "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)") or (all_variables_named[var_name] == "Message" and var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)" and imaging_TF == True):
-            if popup:
-                tkinter.messagebox.showwarning("User input", var_name)
-            else:
-                print(var_name)
-        
-        #Cases where the variable is not repeated
-        elif all_variables_named[var_name] == "not" or all_variables_named[var_name] == "optional":
-            output_text = query_user(
-                var_name, dataframe, all_variables_named, popup
-                )
-            if not output_text is None:
-                dataframe.loc[dataframe[0] == var_name, 3] = output_text
-            else:
-                continue_process = False
-                break
-        
-        #Cases where a software is added
-        elif all_variables_named[var_name] in ["software_collection", "hardware_collection", "software_processing", "software_analysis", "stats", "tasks", "sensor"]:
-            if (var_name != "Statistical analysis (if performed)" or (var_name == "Statistical analysis (if performed)" and imaging_TF == True)):
-                if all_variables_named[var_name] == "hardware_collection":
-                    message_word = "hardware"
-                elif all_variables_named[var_name] == "stats":  
-                    message_word = "statistical analysis"
-                elif all_variables_named[var_name] == "tasks":
-                    message_word = "task"
-                elif all_variables_named[var_name] == "sensor":
-                    message_word = "sensor/marker"
+            #Create a message if it's just a message variable
+            if (all_variables_named[var_name] == "Message" and var_name != "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)") or (all_variables_named[var_name] == "Message" and var_name == "Part 3.2: Data Analysis - Analysis of imaging data (if applicable, otherwise enter na)" and imaging_TF == True):
+                if popup:
+                    tkinter.messagebox.showwarning("User input", var_name)
                 else:
-                    message_word = "software"
-                #Check how many softwares need to be added
+                    print(var_name)
+            
+            #Cases where the variable is not repeated
+            elif all_variables_named[var_name] == "not" or all_variables_named[var_name] == "optional":
+                output_text = query_user(
+                    var_name, dataframe, all_variables_named, popup
+                    )
+                if not output_text is None:
+                    dataframe.loc[dataframe[0] == var_name, 3] = output_text
+                else:
+                    continue_process = False
+                    break
+            
+            #Cases where a software is added
+            elif all_variables_named[var_name] in ["software_collection", "hardware_collection", "software_processing", "software_analysis", "stats", "tasks", "sensor"]:
+                if (var_name != "Statistical analysis (if performed)" or (var_name == "Statistical analysis (if performed)" and imaging_TF == True)):
+                    if all_variables_named[var_name] == "hardware_collection":
+                        message_word = "hardware"
+                    elif all_variables_named[var_name] == "stats":  
+                        message_word = "statistical analysis"
+                    elif all_variables_named[var_name] == "tasks":
+                        message_word = "task"
+                    elif all_variables_named[var_name] == "sensor":
+                        message_word = "sensor/marker"
+                    else:
+                        message_word = "software"
+                    #Check how many softwares need to be added
+                    while True:
+                        number_soft = trycatch_null("How many " + message_word + " do you wish to record? ", popup)
+                        if number_soft is None:
+                            continue_process = False
+                            break
+                        try:
+                            number_soft = int(number_soft)
+                            break
+                        except ValueError:
+                            if popup:
+                                tkinter.messagebox.showwarning("User input", "Please enter an integer value (>=0).")
+                            else:
+                                print("Please enter an integer value (>=0).")
+                    if not continue_process:
+                        break
+                            
+                    #Loop over the number of softwares, and add to the dataframe
+                    continue_process = True
+                    for i in range(number_soft):
+                        output_text = query_software_hardware(var_name, i, popup)
+                        if output_text is None:
+                            continue_process = False
+                            break
+                        if i == 0:
+                            dataframe.loc[dataframe[0] == var_name, 3] = output_text
+                        else:
+                            dataframe.loc[dataframe[0] == var_name, 3] = dataframe.loc[dataframe[0] == var_name, 3] + "\n;;;" + output_text
+
+                    if not continue_process:
+                        break
+
+            #Cases that are repeated but are not software/hardware
+            elif all_variables_named[var_name] != "Message":
+                continue_process = True
+                #Check how many values need to be added
                 while True:
-                    number_soft = trycatch_null("How many " + message_word + "(s) do you wish to record? ", popup)
-                    if number_soft is None:
+                    number_inc = trycatch_null("How many " + var_name + " do you wish to record? ", popup)
+
+                    if number_inc is None:
                         continue_process = False
                         break
                     try:
-                        number_soft = int(number_soft)
+                        number_inc = int(number_inc)
                         break
                     except ValueError:
                         if popup:
-                            tkinter.messagebox.showwarning("User input", "Please enter an integer value (>=0).")
+                            tkinter.messagebox.showwarning("User input", "Please enter an integer value (>=0)")
                         else:
-                            print("Please enter an integer value (>=0).")
+                            print("Please enter an integer value (>=0)")
+                
                 if not continue_process:
                     break
-                        
-                #Loop over the number of softwares, and add to the dataframe
+
+                #Loop over the number of values, and add to the dataframe
                 continue_process = True
-                for i in range(number_soft):
-                    output_text = query_software_hardware(var_name, i, popup)
+                for i in range(number_inc):
+                    output_text =  query_user(
+                            var_name, dataframe, all_variables_named, popup, extra=var_name + " " + str(i+1) + ": "
+                        )
                     if output_text is None:
                         continue_process = False
                         break
+
                     if i == 0:
                         dataframe.loc[dataframe[0] == var_name, 3] = output_text
                     else:
@@ -585,46 +628,6 @@ def create_df(dataframe, popup, part, all_variables_process_use):
 
                 if not continue_process:
                     break
-
-        #Cases that are repeated but are not software/hardware
-        elif all_variables_named[var_name] != "Message":
-            continue_process = True
-            #Check how many values need to be added
-            while True:
-                number_inc = trycatch_null("How many " + var_name + "(s) do you wish to record? ", popup)
-
-                if number_inc is None:
-                    continue_process = False
-                    break
-                try:
-                    number_inc = int(number_inc)
-                    break
-                except ValueError:
-                    if popup:
-                        tkinter.messagebox.showwarning("User input", "Please enter an integer value (>=0)")
-                    else:
-                        print("Please enter an integer value (>=0)")
-            
-            if not continue_process:
-                break
-
-            #Loop over the number of values, and add to the dataframe
-            continue_process = True
-            for i in range(number_inc):
-                output_text =  query_user(
-                        var_name, dataframe, all_variables_named, popup, extra=var_name + " " + str(i+1) + ": "
-                    )
-                if output_text is None:
-                    continue_process = False
-                    break
-
-                if i == 0:
-                    dataframe.loc[dataframe[0] == var_name, 3] = output_text
-                else:
-                    dataframe.loc[dataframe[0] == var_name, 3] = dataframe.loc[dataframe[0] == var_name, 3] + "\n;;;" + output_text
-
-            if not continue_process:
-                break
 
     #In case the output got terminated, provide an information comment
     if not continue_process:

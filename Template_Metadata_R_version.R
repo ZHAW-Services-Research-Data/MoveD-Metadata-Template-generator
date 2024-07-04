@@ -429,7 +429,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       if (var_name != "Statistical analysis (if performed)" | (var_name == "Statistical analysis (if performed)" & imaging_TF)){
         cont_query=TRUE
         while(cont_query){
-          number_soft = trycatch_null(toString(paste0(toString(var_name), ": How many ", toString(message_word), "(s) do you wish to record?")), popup)
+          number_soft = trycatch_null(toString(paste0(toString(var_name), ": How many ", toString(message_word), " do you wish to record?")), popup)
           if (is.null(number_soft)){
             continue_process = FALSE
             break
@@ -484,7 +484,7 @@ create_df <- function(dataframe, popup, part, all_variables_process){
       cont_query=TRUE
       continue_process = TRUE
       while(cont_query){
-        number_inc = trycatch_null(toString(paste0("How many ", toString(var_name), "(s) do you wish to record?")), popup)
+        number_inc = trycatch_null(toString(paste0("How many ", toString(var_name), " do you wish to record?")), popup)
         if (is.null(number_inc)){
           continue_process = FALSE
           break
