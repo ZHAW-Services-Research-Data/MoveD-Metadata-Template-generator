@@ -42,7 +42,7 @@
   
   # List of all variables (divided per section)
   software_collection = c("Name", "Manufacturer", "Version", "Type of data which were collected (e.g. marker-based kinematics, surface EMG)", "Data format of the raw data (xcp, x1d, x2d etc.)")
-  hardware_collection = c("Name", "Manufacturer", "Type of data which were collected (e.g. marker-based kinematics, surface EMG)", "Electrode material, shape, size (if applicable, otherwise enter na)", "Measurement frequency [Hz]")
+  hardware_collection = c("Name", "Manufacturer", "Version of device", "Number of device", "Type of data which were collected (e.g. marker-based kinematics, surface EMG)", "Electrode material, shape, size (if applicable, otherwise enter na)", "Measurement frequency [Hz]", "Range of sensor (if applicable)")
   software_processing = c("Name", "Manufacturer", "Version", "Type of data which were processed")
   software_analysis = c("Name", "Manufacturer", "Version (software and used packages)", "Type of data which were analyzed (kinematics, kinetics, EMG, accelerometer, IMU, EEG, plantar pressure, imaging, video)")
   stats_analyses = c("Statistical model", "Number of analyzed parameters", "Type of parameter (dependent)", "Type of parameter (independent)")
@@ -72,6 +72,7 @@
     "Marker/sensor placement(s)" = "sensor",
     "Part 1.3: general information (if applicable, otherwise enter na)" = "Message",
     "Amplification of device" = "optional",
+    "Calibration file" = "optional",
     "Calibration pose" = "optional",
     "Electrode-Skin Impedance" = "optional",
     "Signal-to-noise ratio" = "optional",
@@ -80,6 +81,7 @@
     "Penetration depth" = "optional",
     "Preparation of the subject" = "optional",
     "Reference electrode" = "optional",
+    "Synchronization method inter-unit" = "optional",
     "Synchronisation method for multiple measurement devices" = "optional",
     "Image resolution" = "optional",
     "Part 1.4: Data collection - Comments: If there are any additional comments you wish to record, please do so in the next prompt." = "Message",
@@ -133,6 +135,9 @@
     "Normalization (IMU)" = "optional",
     "Analyzed outcomes (IMU)" = "optional",
     "Criteria for exclusion of trials (angles, forces, moments, etc.)" = "optional",
+    "Kinematic model used (IMU)" = "optional",
+    "Coordinate system (IMU)" = "optional",
+    "Sensor fusion algorithm" = "optional",
     "Part 2.7: Data Processing - plantar pressure (if applicable, otherwise enter na)" = "Message",
     "Processing steps" = "optional",
     "Criteria for exclusion of trials" = "optional",
@@ -194,6 +199,9 @@
     "Normalization (IMU)" = "IMU",
     "Analyzed outcomes (IMU)" = "IMU",
     "Criteria for exclusion of trials (angles, forces, moments, etc.)" = "IMU",
+    "Kinematic model used (IMU)" = "IMU",
+    "Coordinate system (IMU)" = "IMU",
+    "Sensor fusion algorithm" = "IMU",
     "Part 2.7: Data Processing - plantar pressure (if applicable, otherwise enter na)" = "plantar",
     "Processing steps" = "plantar",
     "Criteria for exclusion of trials" = "plantar",

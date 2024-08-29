@@ -26,35 +26,38 @@ File type after export (EEG);;
 Criteria for exclusion of data trials/single joints (EEG);What part of the data is deleted (raw data, processed data)?;
 ;;
 *Processing of marker data (if applicable, otherwise enter na)*;;
-Labelling;Marker names including anatomical reference point;See also 'Metadata_collect'
+Labelling;Marker names including anatomical reference point;If identical to metadata_collect, just reference it.
 Pipelines (marker data);Name of the pipelines that were used including chosen settings: Subject calibration: describe the used calibration method, Gap filling: name (e.g. Rigid Body, Woltring) and max. gap length),  Filter: name, cut-off frequency, order, type, Data processing: if e.g. Plug-in-Gait is used, describe the pipeline and properties;Describe all the relevant pre-processing steps that are needed to reproduce data processing
 Events;Criteria for placement of events, e.g. automatic detection (force threshold/used markers) or manual setting (used markers);
 Calculation method;Reference to the calculation method for kinematics, kinetics;Examples of calculation methods are Newton-Euler, Lagrange and Inverse Dynamics or Forward Dynamics
-Naming convention (marker data);Name of the files for export and their meaning. List of abbreviations;If data is exported
+Naming convention (marker data);Name of the files for export and their meaning. List of abbreviations including naming of joints and their directions used in the exported file.;If data is exported
 File type after export (marker data);;
 Criteria for the exclusion of trials/single joints (marker data);What part of the data is deleted (raw data, processed data)?;
 Normalization (marker data);Time normalization yes/no. For spatiotemporal parameters leg length normalization yes/no;If yes, define criteria
-Analyzed outcomes angles;Mean value + SD, Maximal value, Range (min & max), …;Include a reference to the chosen calculation methods for kinematic outcomes in the metadata.
-Analyzed spatiotemporal outcomes;Mean value + SD, Absolute value (e.g. for step time) or percentage (e.g. for foot off);Include a reference to the chosen calculation methods in the metadata.
+Analyzed outcomes angles;Mean value + SD, Maximal value, Range (min & max), …;Include a reference to the chosen calculation methods for kinematic outcomes in the metadata. If the mean value is reported include the number of trials used for mean calculation.
+Analyzed spatiotemporal outcomes;Mean value + SD, Absolute value (e.g. for step time) or percentage (e.g. for foot off);Include a reference to the chosen calculation methods in the metadata. If the mean value is reported include the number of trials used for mean calculation.
 ;;
 *Processing of kinetics (if applicable, otherwise enter na)*;;
-Naming convention (kinetics);Name of the files for export and their meaning. List of abbreviations;
+Naming convention (kinetics);Name of the files for export and their meaning. List of abbreviations including naming of joints and their directions used in the exported file.;
 Pipelines (kinetics);Name of the pipelines used, including the chosen settings: Filtering: name of filter, cut-off frequency, order, type. Model used to calculate moments (e.g. Plug-in Gait, BodyBuilder, …);Describe if filtered force/ marker data are used for model calculation
 File type after export (kinetics);;
 Criteria for exclusion of forces/moments;What part of the data is deleted (raw data, processed data);
 Normalization (kinetics);Is kinetic data normalized to body weight (e.g. % bodyweight or kg-1) yes/no;Also describe if other normalization methods were used
-Analyzed outcomes moments;Mean value + SD, Maximal value, Range (min & max), etc.;Include a reference to the chosen calculation methods in the metadata.
-Analyzed outcomes forces;Mean value + SD, Maximal value, Range (min & max), ....;Include a reference to the chosen calculation methods in the metadata.
+Analyzed outcomes moments;Mean value + SD, Maximal value, Range (min & max), etc.;Include a reference to the chosen calculation methods in the metadata. If the mean value is reported include the number of trials used for mean calculation.
+Analyzed outcomes forces;Mean value + SD, Maximal value, Range (min & max), ....;Include a reference to the chosen calculation methods in the metadata. If the mean value is reported include the number of trials used for mean calculation.
 ;;
 *Processing of IMU data (if applicable, otherwise enter na)*;;
-Naming convention (IMU);Name of the files for export and their meaning. List of abbreviations;
+Naming convention (IMU);Name of the files for export and their meaning. List of abbreviations including naming of joints and their directions used in the exported file.;
 Filter (IMU);Name of filter, Cut-off frequency, Order, Type;
 File type after export (IMU);;
 Normalization (IMU);Time or other normalization procedure – please specify;
 Analyzed outcomes (IMU);Angles, Velocity/acceleration, Magnetometer, Gyroscope;
 Criteria for exclusion of trials (angles, forces, moments, etc.);What part of the data is deleted (raw data, processed data)?;
+Kinematic model used (IMU);Include parameterization (generalized coordinates, transformation equations);
+Coordinate system (IMU);Include definition anatomical and joint coordination system ;
+Sensor fusion algorithm;State which sensor fusion algorithm you have used.;
 ;;
-*Processing of plantar pressure (if applicable, otherwise enter na)*;,
+*Processing of plantar pressure (if applicable, otherwise enter na)*;,;
 Processing steps;Masking. Definition of the region of interest and the analyzed segments;Please add the information that is relevant to your measurement device and methods chosen.
 Criteria for exclusion of trials;;
 Analyzed outcomes (plantar pressure);Peak pressure, Mean pressure, Location of peak pressure;

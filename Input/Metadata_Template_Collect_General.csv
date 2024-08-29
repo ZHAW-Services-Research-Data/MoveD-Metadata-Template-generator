@@ -16,14 +16,16 @@ Marker/sensor placement(s);List of placed sensors/probes including specific loca
 ;;;
 *General information - if applicable, otherwise enter na*;;;
 Amplification of device;;Please only describe discrete values;
+Calibration file;Calibration file (if available) where calibration values exported before data collection. If so, please provide the corresponding file as csv.;;
 Calibration pose;Which pose was used for calibration e.g. T-Pose, N-Pose;;
 Electrode-Skin Impedance;[Ω];2 decimal points;
 Signal-to-noise ratio;"General definition: (Power of the signal/Power of background noise); Example for EMG: (EMG signal during muscle contraction/Unwanted electrical signal during muscle at rest)";2 decimal points;
-Mode of measurement device;Example for ultrasound (depending on the device): amplitude mode, brightness mode, motion mode, pulsed wave doppler mode, etc.;Technical guidelines for ultrasound can be found on https://www.essr.org/subcommittees/ultrasound/;
+Mode of measurement device;Example for ultrasound (depending on the device): amplitude mode, brightness mode, motion mode, pulsed wave doppler mode, etc. Example of IMU: logging or streaming in IMUs;Technical guidelines for ultrasound can be found on https://www.essr.org/subcommittees/ultrasound/;
 Dynamic range of measurement device;[dB];2 decimal points;
 Penetration depth;[m];2 decimal points;
 Preparation of the subject;Skin preparation (shaving, application of alcohol, gel, etc.);;
 Reference electrode;Specify which electrode was chosen as the reference;;
+Synchronization method inter-unit;Describe how multiple units of the same device were synchronised.;;
 Synchronisation method for multiple measurement devices;Describe how multiple devices were synchronised:, Is the sampling frequency equal? If not, how is the data re-sampled?, Trigger signal (how is the delay determined?), Time stamp, Post-processing synchronisation: align signals based on a point of interest (e.g. peak);;
 Image resolution;field of view [m];2 decimal points;
 ;;;
