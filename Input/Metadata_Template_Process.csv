@@ -2,7 +2,7 @@
 Title;Content/Format;Comment
 ;;
 *General information*;;
-Date(s) of data processing (one value per participant);[YYYY-MM-DD];According to ISO 8601
+Date(s) of data processing (one value per participant);[YYYY-MM-DD];According to ISO 8601. Add a date range, if no exact date is available.
 Software(s) used for data processing;;Please describe the type of data which were collected in the following form: sensor type and outcome of primary interest. Examples: Marker-based kinematics, Sensor-based kinematics, Video-based (markerless) kinematics, Surface EMG, Force plate kinetics, Spatiotemporal parameters, EEG, Medical imaging, Plantar pressure, 2D video
 Sampling rate;[Hz];If re-sampled after collection, otherwise enter 'na' if the sampling rate has not been changed
 Quality check (if applicable, otherwise enter na);Describe how data quality was assessed e.g. visually by the four-eye-principle. Automatic outlier detection and removal, ...;For a manual, visual quality check please indicate the criteria used. For automatic outlier detection, describe the calculation method/algorithm used.

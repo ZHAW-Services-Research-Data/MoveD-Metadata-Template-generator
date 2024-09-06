@@ -52,6 +52,7 @@
   all_variables_collect_participant <- c(
     "Part 1.1: Data Collection - participant specific information" = "Message",
     "Identification number" = "not",
+    "Date of data collection" = "not",
     "Age" = "not",
     "Gender" = "not",
     "Height" = "not",
@@ -60,7 +61,6 @@
   )
   all_variables_collect_general <- c(
     "Part 1.2: Data Collection - general information (minimal)" = "Message",
-    "Date of data collection" = "not",
     "Software(s) used for data collection" = "software_collection",
     "Hardware which was used for data collection" = "hardware_collection",
     "Study-specific inclusion criteria" = "repeated",

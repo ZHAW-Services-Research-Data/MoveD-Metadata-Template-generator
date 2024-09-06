@@ -3,6 +3,7 @@ Title;Content/Format;Comment;data input
 ;;;
 *Participant-specific information*;;;
 Identification number;;Must be encoded or anonymous e.g. sub01;
+Date of data collection;[YYYY-MM-DD];;
 Age;[years];;
 Gender;Female, Male, Diverse;;
 Height;[m];2 decimal points;
